@@ -19,12 +19,15 @@ Public Class FrmTransBeli
 
 
     Private Sub tampdt()
-        With dtempt
-            csql = "select idtransbeli,Tanggal,NamaGudang,namaKaryawan from tokotrans.dbo.ft_PembelianSpl"
+        Try
+            csql = "select * from TokoTrans..TransBeli order by IdTransBeli"
             lvListAuto(Me.lv, Me.pb, csql)
             lbrec.Text = "Rec. " & Me.lv.Items.Count
             Me.lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
-        End With
+
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message)
+        End Try
     End Sub
     Private Sub FrmTransBeli_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -213,7 +216,7 @@ Public Class FrmTransBeli
         End Try
     End Sub
 
-    'Private Sub FrmTransBeli_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-    '    mform.Enabled = True
-    'End Sub
+    Private Sub FrmTransBeli_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        mform.Enabled = True
+    End Sub
 End Class

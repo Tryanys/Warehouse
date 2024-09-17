@@ -44,7 +44,9 @@ Public Class FrmExplo
                 dttemp.PKey = tthn.Text : dttemp.SKey = itm(1)
                 dttemp.Tamplidt(itm(0))
 
-            Else
+            ElseIf itm(0) = "ps" Then
+                dttemp.PKey = tthn.Text : dttemp.SKey = itm(1)
+                dttemp.Tamplidt(itm(0))
             End If
 
         End If
@@ -54,6 +56,8 @@ Public Class FrmExplo
 
     End Sub
     Private Sub BukaFormToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BukaFormToolStripMenuItem.Click
+        dttemp.PKey = ""
+        dttemp.ndKey = "bl"
         dttemp.BukaForm(Me.Tag)
     End Sub
     Private Sub FrmExplo_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
@@ -63,12 +67,11 @@ Public Class FrmExplo
         With lv1
             If .SelectedIndices.Count = 0 Then Exit Sub
             Dim lvi As ListViewItem = .SelectedItems(0)
-            Dim idTransBeli As String = lvi.Text
             Dim formTransBeli As New FrmTransBeli()
-            formTransBeli.tb1.Text = idTransBeli
-            formTransBeli.Show()
+            formTransBeli.tb1.Text = lvi.Text
+            formTransBeli.bukaform(FrmTransBeli, lvi.Text)
 
-            'nPKey = idTransBeli
+            'nPKey = lvi.Text
             'dttemp.ndKey = "bl"
             'dttemp.BukaForm(Me.Tag)
         End With
@@ -80,16 +83,21 @@ Public Class FrmExplo
             If .SelectedIndices.Count = 0 Then Exit Sub
 
             Dim lvi As ListViewItem = .SelectedItems(0)
-            Dim selectedSuplierId As String = tv.SelectedNode.Name.Split("!"c)(1)
-            dttemp.TampilDetailTransaksi(selectedSuplierId)
+
+            If dttemp.ndKey.Contains("bl") Then
+                dttemp.TampilDetailTransaksi(tv.SelectedNode.Name)
+            End If
+
             Me.ts2.Text = "Sorot " & lvi.Text & " " & lvi.Index & " dari " & .Items.Count
         End With
     End Sub
+
 
     Private Sub tthn_TextChanged(sender As Object, e As EventArgs) Handles tthn.TextChanged
         If Len(tthn.Text) <> 4 Then Exit Sub
         isiPD(tthn.Text)
         If Me.Tag = "beli" Then dttemp.MenuPembelian(tthn.Text)
+        If Me.Tag = "pesan" Then dttemp.MenuPesanan(tthn.Text)
     End Sub
 
 
@@ -231,6 +239,8 @@ Public Class tempdt2
     Public Sub Tamplidt(ByVal ttag As String)
         If ttag = "bl" Then
             csql = "select idtransbeli,Tanggal,NamaGudang,namaKaryawan from tokotrans.dbo.ft_PembelianSpl('" & PKey & "','" & SKey & "')"
+        ElseIf ttag = "ps" Then
+            csql = "select IdPesanan,Tanggal,NamaPembeli,NamaBarang from TokoTrans.dbo.ft_PesananPbl('" & PKey & "','" & SKey & "')"
         End If
         lvListAutoMain(lv1, pb, csql)
     End Sub
@@ -254,9 +264,24 @@ Public Class tempdt2
         End Try
     End Sub
 
-
-
-
+    Public Sub MenuPesanan(ByVal thn As Integer)
+        Dim db As New msaConn
+        Try
+            csql = "select IdPembeli,NamaPembeli from TokoTrans.dbo.ft_PesananMenu('" & thn & "')"
+            With tv
+                .Nodes.Clear()
+                troot = .Nodes.Add("ps", "Pesanan " & thn.ToString)
+                For Each dt As DataRow In db.ExecQuery(csql).Rows
+                    troot1 = troot.Nodes.Add("ps!" & dt(0), dt(1))
+                Next
+                troot.Expand()
+            End With
+        Catch ex As Exception
+            MsgBox(Err.Description, "cek err")
+        Finally
+            db = Nothing
+        End Try
+    End Sub
 
     Public Sub dtMaster()
         Try

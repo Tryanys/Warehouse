@@ -38,15 +38,7 @@ Public Class FrmUtama
         End If
     End Sub
 
-    Private Sub TransaksiBeliToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TransaksiBeliToolStripMenuItem.Click
-        Dim frmexplo As New FrmExplo
-        With frmexplo
-            .MdiParent = Me : noform = +1
-            .Text = "Transaksi " & noform
-            .Tag = "Trans"
-            .Show()
-        End With
-    End Sub
+
 
     Private Sub PembelianToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PembelianToolStripMenuItem.Click
         Dim frmexplo As New FrmExplo
@@ -64,6 +56,20 @@ Public Class FrmUtama
 
         jam = Nothing
 
+    End Sub
+
+    Private Sub PenjualanToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PenjualanToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub TransaksiBeliToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TransaksiBeliToolStripMenuItem.Click
+        Dim frmexplo As New FrmExplo
+        With frmexplo
+            .MdiParent = Me : noform = +1
+            .Text = "Pesanan" & noform
+            .Tag = "pesan"
+            .Show()
+        End With
     End Sub
 End Class
 
