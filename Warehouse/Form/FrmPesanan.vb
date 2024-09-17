@@ -119,7 +119,7 @@ Public Class FrmPesanan
     Private Sub dtpro(ByVal mpro As String)
         Try
             If mpro = "sim" Or mpro = "hap" Then
-                csql = "exec TokoTrans.dbo.sp_Trans#2 '" & mpro & "','" & tb1.Text & "','" & tb5.Text & "',  '" & tb2.Text & "',  '" & tb8.Text & "',''"
+                csql = "exec TokoTrans.dbo.sp_Trans#2 '" & mpro & "','" & tb1.Text & "','" & tb5.Text & "',  '" & tb2.Text & "',  '" & tb8.Text & "','','',''"
                 For Each dt As DataRow In cpro.ExecQuery(csql).Rows
                     MsgBox(dt("Ket"), vbInformation, "Cek Err")
                 Next

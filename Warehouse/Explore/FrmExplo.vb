@@ -57,8 +57,13 @@ Public Class FrmExplo
     End Sub
     Private Sub BukaFormToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BukaFormToolStripMenuItem.Click
         dttemp.PKey = ""
-        dttemp.ndKey = "bl"
-        dttemp.BukaForm(Me.Tag)
+        If Me.Tag = "beli" Then
+            dttemp.ndKey = "bl"
+            dttemp.BukaForm(Me.Tag)
+        ElseIf Me.Tag = "pesan" Then
+            dttemp.ndKey = "ps"
+            dttemp.BukaForm(Me.Tag)
+        End If
     End Sub
     Private Sub FrmExplo_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         dttemp = Nothing
@@ -68,8 +73,19 @@ Public Class FrmExplo
             If .SelectedIndices.Count = 0 Then Exit Sub
             Dim lvi As ListViewItem = .SelectedItems(0)
             Dim formTransBeli As New FrmTransBeli()
-            formTransBeli.tb1.Text = lvi.Text
-            formTransBeli.bukaform(FrmTransBeli, lvi.Text)
+            Dim formPesanan As New FrmPesanan()
+            If Me.Tag = "beli" Then
+                dttemp.ndKey = "bl"
+                formTransBeli.tb1.Text = lvi.Text
+                formTransBeli.bukaform(FrmTransBeli, lvi.Text)
+            ElseIf Me.Tag = "pesan" Then
+                dttemp.ndKey = "ps"
+                formPesanan.tb1.Text = lvi.Text
+                formPesanan.bukaform(FrmPesanan, lvi.Text)
+
+            End If
+
+
 
             'nPKey = lvi.Text
             'dttemp.ndKey = "bl"
@@ -86,6 +102,8 @@ Public Class FrmExplo
 
             If dttemp.ndKey.Contains("bl") Then
                 dttemp.TampilDetailTransaksi(tv.SelectedNode.Name)
+            ElseIf dttemp.ndKey.Contains("ps") Then
+                dttemp.TampilDetailPesanan(tv.SelectedNode.Name)
             End If
 
             Me.ts2.Text = "Sorot " & lvi.Text & " " & lvi.Index & " dari " & .Items.Count
@@ -229,6 +247,12 @@ Public Class tempdt2
 
         End With
     End Sub
+    Public Sub TampilDetailPesanan(ByVal idPembeli As String)
+        Dim csql As String = "SELECT IdPesanan,IdPembeli,IdBarang,Tanggal,NamaPembeli,NamaBarang,JmlBrg,Harga,Diskon,Satuan,Status FROM TokoTrans.dbo.ft_PesananPblDet('" & PKey & "','" & SKey & "')"
+        lv2.Items.Clear()
+
+        lvListAutoMain(lv2, pb, csql)
+    End Sub
     Public Sub TampilDetailTransaksi(ByVal idSuplier As String)
         Dim csql As String = "SELECT IdTransBeli,Tanggal,IdBarang, NamaKaryawan,NamaGudang,NamaBarang,Jumlah,Harga,Diskon,Satuan FROM TokoTrans.dbo.ft_PembelianSplDet('" & PKey & "','" & SKey & "')"
         lv2.Items.Clear()
@@ -344,13 +368,16 @@ Public Class tempdt2
         End Try
     End Sub
     Public Sub BukaForm(ByVal meTag As String)
-        If meTag = "beli" Then
-            Select Case ndKey
-                Case "bl"
-                    FrmTransBeli.bukaform(FrmUtama, nPKey)
-                Case "ps"
+        Select Case meTag
+            Case "beli"
+                Select Case ndKey
+                    Case "bl"
+                        FrmTransBeli.bukaform(FrmUtama, nPKey)
+                End Select
+            Case "pesan"
+                If ndKey = "ps" Then
                     FrmPesanan.bukaform(FrmUtama, nPKey)
-            End Select
-        End If
+                End If
+        End Select
     End Sub
 End Class
