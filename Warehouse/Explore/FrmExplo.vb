@@ -75,13 +75,13 @@ Public Class FrmExplo
             Dim formTransBeli As New FrmTransBeli()
             Dim formPesanan As New FrmPesanan()
             If Me.Tag = "beli" Then
+                nPKey = lvi.Text
                 dttemp.ndKey = "bl"
-                formTransBeli.tb1.Text = lvi.Text
-                formTransBeli.bukaform(FrmTransBeli, lvi.Text)
+                dttemp.BukaForm(Me.Tag)
             ElseIf Me.Tag = "pesan" Then
+                nPKey = lvi.Text
                 dttemp.ndKey = "ps"
-                formPesanan.tb1.Text = lvi.Text
-                formPesanan.bukaform(FrmPesanan, lvi.Text)
+                dttemp.BukaForm(Me.Tag)
 
             End If
 
