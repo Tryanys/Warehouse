@@ -28,6 +28,7 @@ Partial Class FrmUtama
         Me.MasterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TransaksiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TransaksiBeliToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TerimaPesananToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.PembelianToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PenjualanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -77,7 +78,7 @@ Partial Class FrmUtama
         '
         'TransaksiToolStripMenuItem
         '
-        Me.TransaksiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TransaksiBeliToolStripMenuItem, Me.ToolStripSeparator1, Me.PembelianToolStripMenuItem, Me.PenjualanToolStripMenuItem, Me.GudangToolStripMenuItem, Me.ToolStripSeparator2, Me.PembukuanToolStripMenuItem, Me.PelaporanToolStripMenuItem})
+        Me.TransaksiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TransaksiBeliToolStripMenuItem, Me.TerimaPesananToolStripMenuItem1, Me.ToolStripSeparator1, Me.PembelianToolStripMenuItem, Me.PenjualanToolStripMenuItem, Me.GudangToolStripMenuItem, Me.ToolStripSeparator2, Me.PembukuanToolStripMenuItem, Me.PelaporanToolStripMenuItem})
         Me.TransaksiToolStripMenuItem.Name = "TransaksiToolStripMenuItem"
         Me.TransaksiToolStripMenuItem.Size = New System.Drawing.Size(66, 20)
         Me.TransaksiToolStripMenuItem.Text = "Transaksi"
@@ -87,6 +88,12 @@ Partial Class FrmUtama
         Me.TransaksiBeliToolStripMenuItem.Name = "TransaksiBeliToolStripMenuItem"
         Me.TransaksiBeliToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.TransaksiBeliToolStripMenuItem.Text = "Pesanan"
+        '
+        'TerimaPesananToolStripMenuItem1
+        '
+        Me.TerimaPesananToolStripMenuItem1.Name = "TerimaPesananToolStripMenuItem1"
+        Me.TerimaPesananToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.TerimaPesananToolStripMenuItem1.Text = "Terima Pesanan"
         '
         'ToolStripSeparator1
         '
@@ -222,4 +229,5 @@ Partial Class FrmUtama
     Friend WithEvents tsPengguna As ToolStripStatusLabel
     Friend WithEvents tsPenggunaStatus As ToolStripStatusLabel
     Friend WithEvents tsTGL As ToolStripStatusLabel
+    Friend WithEvents TerimaPesananToolStripMenuItem1 As ToolStripMenuItem
 End Class

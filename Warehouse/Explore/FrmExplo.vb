@@ -41,17 +41,27 @@ Public Class FrmExplo
             dttemp.dtMaster()
         Else
             If itm(0) = "bl" Then
-                dttemp.PKey = tthn.Text : dttemp.SKey = itm(1)
+                dttemp.PKey = tthn.Text
+                dttemp.SKey = itm(1)
                 dttemp.Tamplidt(itm(0))
 
             ElseIf itm(0) = "ps" Then
                 dttemp.PKey = tthn.Text : dttemp.SKey = itm(1)
                 dttemp.Tamplidt(itm(0))
+            ElseIf itm(0) = "tp" Then
+                dttemp.PKey = tthn.Text
+                dttemp.SKey = itm(1)
+
+                Select Case itm(1)
+                    Case "diterima"
+                        dttemp.Tamplidt("Pesanan Diterima")
+                    Case "proses"
+                        dttemp.Tamplidt("Sedang Proses")
+                    Case "dikirim"
+                        dttemp.Tamplidt("Dikirim")
+                End Select
             End If
-
         End If
-
-
         Me.ts1.Text = Me.tv.SelectedNode.Text
 
     End Sub
@@ -74,6 +84,7 @@ Public Class FrmExplo
             Dim lvi As ListViewItem = .SelectedItems(0)
             Dim formTransBeli As New FrmTransBeli()
             Dim formPesanan As New FrmPesanan()
+            Dim formTerima As New FrmTerima()
             If Me.Tag = "beli" Then
                 dttemp.ndKey = "bl"
                 formTransBeli.tb1.Text = lvi.Text
@@ -82,7 +93,10 @@ Public Class FrmExplo
                 dttemp.ndKey = "ps"
                 formPesanan.tb1.Text = lvi.Text
                 formPesanan.bukaform(FrmPesanan, lvi.Text)
-
+            ElseIf Me.Tag = "Terima" Then
+                dttemp.ndKey = "tp!diterima"
+                formTerima.tb1.Text = lvi.Text
+                formTerima.bukaform(FrmPesanan, lvi.Text)
             End If
 
 
@@ -105,6 +119,10 @@ Public Class FrmExplo
             ElseIf dttemp.ndKey.Contains("ps") Then
                 dttemp.TampilDetailPesanan(tv.SelectedNode.Name)
             End If
+            Select Case tv.SelectedNode.Name
+                Case "tp!diterima"
+                    dttemp.TampilDetailTerimaPesanan(tv.SelectedNode.Name)
+            End Select
 
             Me.ts2.Text = "Sorot " & lvi.Text & " " & lvi.Index & " dari " & .Items.Count
         End With
@@ -116,6 +134,7 @@ Public Class FrmExplo
         isiPD(tthn.Text)
         If Me.Tag = "beli" Then dttemp.MenuPembelian(tthn.Text)
         If Me.Tag = "pesan" Then dttemp.MenuPesanan(tthn.Text)
+        If Me.Tag = "Terima" Then dttemp.MenuTerimaPesanan(tthn.Text)
     End Sub
 
 
@@ -247,6 +266,15 @@ Public Class tempdt2
 
         End With
     End Sub
+    Public Sub TampilDetailTerimaPesanan(ByVal ttag As String)
+        Select Case ttag
+            Case "tp!diterima"
+                csql = "select IdPesanan,IdPembeli,IdBarang,Tanggal,NamaPembeli,NamaBarang,JmlBrg,Harga,Diskon,Satuan from TokoTrans.dbo.ft_TerimaPesananMenuDet('" & PKey & "','" & SKey & "')"
+        End Select
+        lv2.Items.Clear()
+
+        lvListAutoMain(lv2, pb, csql)
+    End Sub
     Public Sub TampilDetailPesanan(ByVal idPembeli As String)
         Dim csql As String = "SELECT IdPesanan,IdPembeli,IdBarang,Tanggal,NamaPembeli,NamaBarang,JmlBrg,Harga,Diskon,Satuan,Status FROM TokoTrans.dbo.ft_PesananPblDet('" & PKey & "','" & SKey & "')"
         lv2.Items.Clear()
@@ -266,6 +294,15 @@ Public Class tempdt2
         ElseIf ttag = "ps" Then
             csql = "select IdPesanan,Tanggal,NamaPembeli,NamaBarang from TokoTrans.dbo.ft_PesananPbl('" & PKey & "','" & SKey & "')"
         End If
+        Select Case ttag
+            Case "Pesanan Diterima"
+                csql = "select IdPesanan,TglInput,IdPembeli,IdBarang,Status from TokoTrans.dbo.ft_TerimaPesananMenu('" & PKey & "','" & ttag & "')"
+            Case "Sedang Proses"
+                csql = "select IdPesanan,TglInput,IdPembeli,IdBarang,Status from TokoTrans.dbo.ft_TerimaPesananMenu('" & PKey & "','" & ttag & "')"
+            Case "Dikirim"
+                csql = "select IdPesanan,TglInput,IdPembeli,IdBarang,Status from TokoTrans.dbo.ft_TerimaPesananMenu('" & PKey & "','" & ttag & "')"
+
+        End Select
         lvListAutoMain(lv1, pb, csql)
     End Sub
 
@@ -306,6 +343,25 @@ Public Class tempdt2
             db = Nothing
         End Try
     End Sub
+    Public Sub MenuTerimaPesanan(ByVal thn As Integer)
+        Dim db As New msaConn
+        Try
+            With tv
+                .Nodes.Clear()
+                troot = .Nodes.Add("tp", "TerimaPesanan " & thn.ToString)
+                Dim troot1Diterima As TreeNode = troot.Nodes.Add("tp!diterima", "Pesanan Diterima")
+                Dim troot1Proses As TreeNode = troot.Nodes.Add("tp!proses", "Sedang Proses")
+                Dim troot1Dikirim As TreeNode = troot.Nodes.Add("tp!dikirim", "Dikirim")
+            End With
+            troot.Expand()
+        Catch ex As Exception
+            MsgBox(ex.Message, "Error")
+        Finally
+            db = Nothing
+        End Try
+    End Sub
+
+
 
     Public Sub dtMaster()
         Try

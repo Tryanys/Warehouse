@@ -128,6 +128,12 @@
     <Compile Include="Form\FrmMaster4.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\FrmTerima.Designer.vb">
+      <DependentUpon>FrmTerima.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmTerima.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\FrmTransBeli.Designer.vb">
       <DependentUpon>FrmTransBeli.vb</DependentUpon>
     </Compile>
@@ -197,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmMaster4.resx">
       <DependentUpon>FrmMaster4.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmTerima.resx">
+      <DependentUpon>FrmTerima.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmTransBeli.resx">
       <DependentUpon>FrmTransBeli.vb</DependentUpon>

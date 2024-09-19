@@ -21,7 +21,7 @@ Public Class FrmCari
     Public Sub dtSearch()
         Try
             csql = ""
-            csql = "select IdBarang,NamaBarang,Satuan,Rak from TokoMaster.dbo.Barang order by IdBarang"
+            csql = "select Idbarang,NamaBarang,Stok from TokoTrans..ft_TampilJual()"
 
             If csql = "" Then Exit Sub
             lvListAuto(lv, pb, csql)

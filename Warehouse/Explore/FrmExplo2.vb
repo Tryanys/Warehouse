@@ -179,6 +179,7 @@ Public Class tempdt
             troot = .Nodes.Add("gdg", "Gudang")
             troot1 = troot.Nodes.Add("gdd", "Data Gudang")
             troot1 = troot.Nodes.Add("gdh", "Gudang Harga")
+            troot1 = troot.Nodes.Add("gds", "Gudang Stok")
             troot.Expand()
 
             troot = .Nodes.Add("pbl", "Pembeli")
@@ -215,6 +216,8 @@ Public Class tempdt
 
             If ndKey = "gdd" Then csql = "select IdGudang,NamaGudang,Alamat from TokoMaster.dbo.Gudang order by IdGudang"
             If ndKey = "gdh" Then csql = "select IdGudang,IdTransBeli,TglMasuk,Stok,TglExp from TokoMaster.dbo.GudangHrg order by IdGudang"
+            If ndKey = "gds" Then csql = "select IdGudang,Idbarang,b.NamaBarang,Stok from TokoMaster..GudangStok a
+	                                            outer apply (select NamaBarang from TokoMaster..Barang where IdBarang=a.IdBarang) b ORDER BY IdGudang"
 
             If ndKey = "pbl" Then csql = "select IdPembeli,NamaPembeli,Alamat from TokoMaster.dbo.Pembeli order by IdPembeli"
 

@@ -15,28 +15,8 @@ Public Class FrmTransJual
     Private Sub FrmTransJual_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         tb1.Focus() : SendKeys.Send("{end}")
         tampdt()
-        ambilEks()
     End Sub
-    Private Sub ambilEks()
-        cb1.Items.Clear()
-        Dim db As New msaConn
-        Dim csql As String = "select NamaEKS from TokoMaster..Ekspedisi"
-        Dim datatable As New DataTable
-        datatable = db.ExecQuery(csql)
-        If datatable.Rows.Count > 0 Then
-            With cb1
-                .Items.Clear()
-                For i As Integer = 0 To datatable.Rows.Count - 1
-                    .Items.Add(datatable.Rows(i).Item("NamaEKS"))
-                Next
-                .SelectedIndex = -1
-            End With
-        End If
 
-        db = Nothing
-        datatable.Dispose()
-        datatable = Nothing
-    End Sub
 
     Private Sub FrmTransJual_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tb1.KeyPress, tb2.KeyPress,
         tb3.KeyPress, tb4.KeyPress, tb5.KeyPress, tb6.KeyPress, tb7.KeyPress, tb8.KeyPress, tb9.KeyPress, tb10.KeyPress, tb11.KeyPress, tb12.KeyPress

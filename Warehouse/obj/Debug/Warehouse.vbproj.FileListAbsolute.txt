@@ -69,3 +69,4 @@ C:\Users\user\Downloads\Compressed\Warehouse-master\Warehouse-master\Warehouse\o
 C:\Users\user\Downloads\Compressed\Warehouse-master\Warehouse-master\Warehouse\obj\Debug\Warehouse.exe
 C:\Users\user\Downloads\Compressed\Warehouse-master\Warehouse-master\Warehouse\obj\Debug\Warehouse.xml
 C:\Users\user\Downloads\Compressed\Warehouse-master\Warehouse-master\Warehouse\obj\Debug\Warehouse.pdb
+C:\Users\user\Downloads\Compressed\Warehouse-master\Warehouse-master\Warehouse\obj\Debug\Warehouse.FrmTerima.resources
