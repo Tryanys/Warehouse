@@ -82,28 +82,19 @@ Public Class FrmExplo
         With lv1
             If .SelectedIndices.Count = 0 Then Exit Sub
             Dim lvi As ListViewItem = .SelectedItems(0)
-            Dim formTransBeli As New FrmTransBeli()
-            Dim formPesanan As New FrmPesanan()
-            Dim formTerima As New FrmTerima()
             If Me.Tag = "beli" Then
                 dttemp.ndKey = "bl"
-                formTransBeli.tb1.Text = lvi.Text
-                formTransBeli.bukaform(FrmTransBeli, lvi.Text)
+                nPKey = lvi.Text
+                dttemp.BukaForm(Me.Tag)
             ElseIf Me.Tag = "pesan" Then
                 dttemp.ndKey = "ps"
-                formPesanan.tb1.Text = lvi.Text
-                formPesanan.bukaform(FrmPesanan, lvi.Text)
+                nPKey = lvi.Text
+                dttemp.BukaForm(Me.Tag)
             ElseIf Me.Tag = "Terima" Then
                 dttemp.ndKey = "tp!diterima"
-                formTerima.tb1.Text = lvi.Text
-                formTerima.bukaform(FrmPesanan, lvi.Text)
+                nPKey = lvi.Text
+                dttemp.BukaForm(Me.Tag)
             End If
-
-
-
-            'nPKey = lvi.Text
-            'dttemp.ndKey = "bl"
-            'dttemp.BukaForm(Me.Tag)
         End With
     End Sub
 

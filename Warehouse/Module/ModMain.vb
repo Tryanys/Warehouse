@@ -25,4 +25,38 @@
             BatasTanggal = 0
         End If
     End Function
+
+    Public Function AmbilTanggalServer24() As Date
+        Dim tgl As Date
+        Dim db As msaConn, temptable As DataTable
+
+        db = New msaConn
+        tgl = Format(Now, "dd/MM/yyyy HH:mm:ss")
+        Try
+            csql = "exec tokomaster.dbo.sp_tanggal"
+            temptable = db.ExecQuery(csql)
+            For Each dtrow As DataRow In temptable.Rows
+                tgl = Format(dtrow(0), "dd/MM/yyyy HH:mm:ss")
+            Next
+        Catch ex As Exception
+            MsgBox(Err.Description, vbInformation, "AmbilTanggalServer")
+        Finally
+            temptable = Nothing
+            db = Nothing
+        End Try
+        Return tgl
+    End Function
+
+    Public Sub gantijamServer()
+        Dim d As DateTime
+        d = AmbilTanggalServer24()
+
+        Try
+            Microsoft.VisualBasic.TimeOfDay = d 'Your time...
+            Microsoft.VisualBasic.DateString = Format(New Date(d.Year, d.Month, d.Day), "MM/dd/yyyy") 'The date...
+        Catch ex As Exception
+            MsgBox("Jalankan as Administrator") 'You might have to run as Administrator...?
+            Exit Sub
+        End Try
+    End Sub
 End Module

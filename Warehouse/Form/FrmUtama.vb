@@ -51,11 +51,16 @@ Public Class FrmUtama
     End Sub
 
     Private Sub FrmUtama_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim jam As New samakanjam
-        tsTGL.Text = jam.AmbilTanggalServer.Date.ToShortDateString
+        'Dim jam As New samakanjam
+        'tsTGL.Text = jam.AmbilTanggalServer.Date.ToShortDateString
 
-        jam = Nothing
+        'jam = Nothing
 
+        Dim dt As String = ""
+        Dim dtStyle As String = "ddd, dd MMM yyyy"
+        gantijamServer()
+        dt = DateTime.Now.ToString(dtStyle, New System.Globalization.CultureInfo("id-ID"))
+        tsTGL.Text = dt
     End Sub
 
     Private Sub PenjualanToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PenjualanToolStripMenuItem.Click
@@ -89,61 +94,61 @@ Public Class FrmUtama
     End Sub
 End Class
 
-Public Class samakanjam
-    Dim newDate As Date
-    Dim db As msaConn, st As systemtime
+'Public Class samakanjam
+'    Dim newDate As Date
+'    Dim db As msaConn, st As systemtime
 
 
 
-    Public Function AmbilTanggalServer() As Date
-        Dim newdate As Date
-        db = New msaConn
-        Try
-            csql = "exec tokomaster.dbo.sp_tanggal"
-            For Each dt As DataRow In db.ExecQuery(csql).Rows
-                newdate = dt(0)
-            Next
+'    Public Function AmbilTanggalServer() As Date
+'        Dim newdate As Date
+'        db = New msaConn
+'        Try
+'            csql = "exec tokomaster.dbo.sp_tanggal"
+'            For Each dt As DataRow In db.ExecQuery(csql).Rows
+'                newdate = dt(0)
+'            Next
 
 
-            st.year = newdate.Year
-            st.month = newdate.Month
-            st.day = newdate.Day
-            st.hour = newdate.Hour
-            st.minute = newdate.Minute
-            st.second = newdate.Second
-            st.milliseconds = newdate.Millisecond
+'            st.year = newdate.Year
+'            st.month = newdate.Month
+'            st.day = newdate.Day
+'            st.hour = newdate.Hour
+'            st.minute = newdate.Minute
+'            st.second = newdate.Second
+'            st.milliseconds = newdate.Millisecond
 
-            'SetLocaltime(st)
+'            SetLocaltime(st)
 
-        Catch ex As Exception
-            MsgBox(Err.Description, vbInformation, "Cek err")
-        Finally
-            db = Nothing
-        End Try
+'        Catch ex As Exception
+'            MsgBox(Err.Description, vbInformation, "Cek err")
+'        Finally
+'            db = Nothing
+'        End Try
 
-        Return newdate
+'        Return newdate
 
-    End Function
+'    End Function
 
-    Private Structure systemtime
-        Public year As Short
-        Public month As Short
-        Public dayOfWeek As Short
-        Public day As Short
-        Public hour As Short
-        Public minute As Short
-        Public second As Short
-        Public milliseconds As Short
-    End Structure
-
-
-    <DllImport("kernel32.dll", SetLastError:=True)>
-    Private Shared Function SetLocaltime(ByRef time As systemtime) As Boolean
-
-    End Function
+'    Private Structure systemtime
+'        Public year As Short
+'        Public month As Short
+'        Public dayOfWeek As Short
+'        Public day As Short
+'        Public hour As Short
+'        Public minute As Short
+'        Public second As Short
+'        Public milliseconds As Short
+'    End Structure
 
 
-End Class
+'    <DllImport("kernel32.dll", SetLastError:=True)>
+'    Private Shared Function SetLocaltime(ByRef time As systemtime) As Boolean
+
+'    End Function
+
+
+'End Class
 
 
 
