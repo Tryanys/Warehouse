@@ -54,6 +54,8 @@ Partial Class FrmTransJual
         Me.lv = New System.Windows.Forms.ListView()
         Me.lbrec = New System.Windows.Forms.Label()
         Me.pb = New System.Windows.Forms.ProgressBar()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.cb1 = New System.Windows.Forms.ComboBox()
         Me.Panel1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -62,6 +64,8 @@ Partial Class FrmTransJual
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.cb1)
+        Me.Panel1.Controls.Add(Me.Label13)
         Me.Panel1.Controls.Add(Me.GroupBox3)
         Me.Panel1.Controls.Add(Me.GroupBox2)
         Me.Panel1.Controls.Add(Me.GroupBox1)
@@ -353,6 +357,23 @@ Partial Class FrmTransJual
         Me.pb.Size = New System.Drawing.Size(58, 13)
         Me.pb.TabIndex = 10
         '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(239, 17)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(52, 13)
+        Me.Label13.TabIndex = 6
+        Me.Label13.Text = "Ekspedisi"
+        '
+        'cb1
+        '
+        Me.cb1.FormattingEnabled = True
+        Me.cb1.Location = New System.Drawing.Point(315, 14)
+        Me.cb1.Name = "cb1"
+        Me.cb1.Size = New System.Drawing.Size(121, 21)
+        Me.cb1.TabIndex = 7
+        '
         'FrmTransJual
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -410,4 +431,6 @@ Partial Class FrmTransJual
     Friend WithEvents lbrec As Label
     Friend WithEvents pb As ProgressBar
     Friend WithEvents Button1 As Button
+    Friend WithEvents cb1 As ComboBox
+    Friend WithEvents Label13 As Label
 End Class

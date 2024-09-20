@@ -60,6 +60,9 @@ Public Class FrmExplo
                     Case "dikirim"
                         dttemp.Tamplidt("Dikirim")
                 End Select
+            ElseIf itm(0) = "pj" Then
+                dttemp.PKey = tthn.Text : dttemp.SKey = itm(1)
+                dttemp.Tamplidt(itm(0))
             End If
         End If
         Me.ts1.Text = Me.tv.SelectedNode.Text
@@ -72,6 +75,9 @@ Public Class FrmExplo
             dttemp.BukaForm(Me.Tag)
         ElseIf Me.Tag = "pesan" Then
             dttemp.ndKey = "ps"
+            dttemp.BukaForm(Me.Tag)
+        ElseIf Me.Tag = "jual" Then
+            dttemp.ndKey = "pj"
             dttemp.BukaForm(Me.Tag)
         End If
     End Sub
@@ -126,6 +132,7 @@ Public Class FrmExplo
         If Me.Tag = "beli" Then dttemp.MenuPembelian(tthn.Text)
         If Me.Tag = "pesan" Then dttemp.MenuPesanan(tthn.Text)
         If Me.Tag = "Terima" Then dttemp.MenuTerimaPesanan(tthn.Text)
+        If Me.Tag = "jual" Then dttemp.MenuPenjualan(tthn.Text)
     End Sub
 
 
@@ -284,6 +291,8 @@ Public Class tempdt2
             csql = "select idtransbeli,Tanggal,NamaGudang,namaKaryawan from tokotrans.dbo.ft_PembelianSpl('" & PKey & "','" & SKey & "')"
         ElseIf ttag = "ps" Then
             csql = "select IdPesanan,Tanggal,NamaPembeli,NamaBarang from TokoTrans.dbo.ft_PesananPbl('" & PKey & "','" & SKey & "')"
+        ElseIf ttag = "pj" Then
+            csql = "select IdTransJual,IdEKS,IdPesanan,IdPembeli,IdKaryawan from TokoTrans.dbo.ft_PenjualanPbl('" & PKey & "','" & SKey & "')"
         End If
         Select Case ttag
             Case "Pesanan Diterima"
@@ -306,6 +315,24 @@ Public Class tempdt2
                 troot = .Nodes.Add("bl", "Pembelian " & thn.ToString)
                 For Each dt As DataRow In db.ExecQuery(csql).Rows
                     troot1 = troot.Nodes.Add("bl!" & dt(0), dt(1))
+                Next
+                troot.Expand()
+            End With
+        Catch ex As Exception
+            MsgBox(Err.Description, "cek err")
+        Finally
+            db = Nothing
+        End Try
+    End Sub
+    Public Sub MenuPenjualan(ByVal thn As Integer)
+        Dim db As New msaConn
+        Try
+            csql = "select IdPembeli,NamaPembeli from tokotrans.dbo.ft_PenjualanMenu('" & thn & "')"
+            With tv
+                .Nodes.Clear()
+                troot = .Nodes.Add("pj", "Penjualan " & thn.ToString)
+                For Each dt As DataRow In db.ExecQuery(csql).Rows
+                    troot1 = troot.Nodes.Add("pj!" & dt(0), dt(1))
                 Next
                 troot.Expand()
             End With
@@ -417,13 +444,16 @@ Public Class tempdt2
     Public Sub BukaForm(ByVal meTag As String)
         Select Case meTag
             Case "beli"
-                Select Case ndKey
-                    Case "bl"
-                        FrmTransBeli.bukaform(FrmUtama, nPKey)
-                End Select
+                If ndKey = "bl" Then
+                    FrmTransBeli.bukaform(FrmUtama, nPKey)
+                End If
             Case "pesan"
                 If ndKey = "ps" Then
                     FrmPesanan.bukaform(FrmUtama, nPKey)
+                End If
+            Case "jual"
+                If ndKey = "pj" Then
+                    FrmTransJual.bukaform(FrmUtama, nPKey)
                 End If
         End Select
     End Sub

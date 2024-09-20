@@ -4,6 +4,14 @@ Imports Warehouse.FrmExplo
 Public Class FrmTransJual
     Dim WithEvents dttemp As New tempdt2
     Dim WithEvents cpro As New msaConn
+    Dim mform As Form
+    Public Sub bukaform(ByVal nForm As Form, ByVal id As String)
+        Me.Show()
+        mform = nForm : mform.Enabled = False
+        tb1.Text = id
+        tb1.Focus() : SendKeys.Send("{end}")
+        tampdt()
+    End Sub
     Private Sub tampdt()
         With dttemp
             csql = "select IdTransJual,IdEKS,IdPesanan,IdKaryawan,TglInput,Tanggal from TokoTrans..TransJual order by IdTransJual"
