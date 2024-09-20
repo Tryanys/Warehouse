@@ -44,6 +44,10 @@ Partial Class FrmUtama
         Me.tsPenggunaStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.tsTGL = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.HutangToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PiutangToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.LainnyaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.tsMain.SuspendLayout()
         Me.SuspendLayout()
@@ -127,6 +131,7 @@ Partial Class FrmUtama
         '
         'PembukuanToolStripMenuItem
         '
+        Me.PembukuanToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HutangToolStripMenuItem, Me.PiutangToolStripMenuItem, Me.ToolStripSeparator3, Me.LainnyaToolStripMenuItem})
         Me.PembukuanToolStripMenuItem.Name = "PembukuanToolStripMenuItem"
         Me.PembukuanToolStripMenuItem.Size = New System.Drawing.Size(186, 26)
         Me.PembukuanToolStripMenuItem.Text = "Pembukuan"
@@ -157,7 +162,7 @@ Partial Class FrmUtama
         'tslbMain
         '
         Me.tslbMain.Name = "tslbMain"
-        Me.tslbMain.Size = New System.Drawing.Size(635, 20)
+        Me.tslbMain.Size = New System.Drawing.Size(674, 20)
         Me.tslbMain.Spring = True
         Me.tslbMain.Text = "Status"
         '
@@ -190,6 +195,29 @@ Partial Class FrmUtama
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(21, 20)
         Me.ToolStripStatusLabel1.Text = "--"
+        '
+        'HutangToolStripMenuItem
+        '
+        Me.HutangToolStripMenuItem.Name = "HutangToolStripMenuItem"
+        Me.HutangToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
+        Me.HutangToolStripMenuItem.Text = "Hutang"
+        '
+        'PiutangToolStripMenuItem
+        '
+        Me.PiutangToolStripMenuItem.Name = "PiutangToolStripMenuItem"
+        Me.PiutangToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
+        Me.PiutangToolStripMenuItem.Text = "Piutang"
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(178, 6)
+        '
+        'LainnyaToolStripMenuItem
+        '
+        Me.LainnyaToolStripMenuItem.Name = "LainnyaToolStripMenuItem"
+        Me.LainnyaToolStripMenuItem.Size = New System.Drawing.Size(181, 26)
+        Me.LainnyaToolStripMenuItem.Text = "Lainnya"
         '
         'FrmUtama
         '
@@ -240,4 +268,8 @@ Partial Class FrmUtama
     Friend WithEvents tsTGL As ToolStripStatusLabel
     Friend WithEvents TerimaPesananToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
+    Friend WithEvents HutangToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PiutangToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+    Friend WithEvents LainnyaToolStripMenuItem As ToolStripMenuItem
 End Class

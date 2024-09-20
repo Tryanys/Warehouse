@@ -110,16 +110,21 @@ Public Class FrmExplo
             If .SelectedIndices.Count = 0 Then Exit Sub
 
             Dim lvi As ListViewItem = .SelectedItems(0)
+            dttemp.PKey = lvi.Text
+            dttemp.TampilDetailTransaksi(.Tag)
 
-            If dttemp.ndKey.Contains("bl") Then
-                dttemp.TampilDetailTransaksi(tv.SelectedNode.Name)
-            ElseIf dttemp.ndKey.Contains("ps") Then
-                dttemp.TampilDetailPesanan(tv.SelectedNode.Name)
-            End If
-            Select Case tv.SelectedNode.Name
-                Case "tp!diterima"
-                    dttemp.TampilDetailTerimaPesanan(tv.SelectedNode.Name)
-            End Select
+
+
+
+            'If dttemp.ndKey.Contains("bl") Then
+            '    dttemp.TampilDetailTransaksi(tv.SelectedNode.Name)
+            'ElseIf dttemp.ndKey.Contains("ps") Then
+            '    dttemp.TampilDetailPesanan(tv.SelectedNode.Name)
+            'End If
+            'Select Case tv.SelectedNode.Name
+            '    Case "tp!diterima"
+            '        dttemp.TampilDetailTerimaPesanan(tv.SelectedNode.Name)
+            'End Select
 
             Me.ts2.Text = "Sorot " & lvi.Text & " " & lvi.Index & " dari " & .Items.Count
         End With
@@ -279,16 +284,18 @@ Public Class tempdt2
 
         lvListAutoMain(lv2, pb, csql)
     End Sub
-    Public Sub TampilDetailTransaksi(ByVal idSuplier As String)
-        Dim csql As String = "SELECT IdTransBeli,Tanggal,IdBarang, NamaKaryawan,NamaGudang,NamaBarang,Jumlah,Harga,Diskon,Satuan FROM TokoTrans.dbo.ft_PembelianSplDet('" & PKey & "','" & SKey & "')"
-        lv2.Items.Clear()
+    Public Sub TampilDetailTransaksi(ByVal ttag As String)
+        If ttag = "bl" Then
+            csql = "SELECT IdBarang,NamaBarang,Satuan,Jumlah,Harga,Total,Diskon,HrgDis FROM TokoTrans.dbo.ft_PembelianSplDet('" & PKey & "')"
+
+        End If
 
         lvListAutoMain(lv2, pb, csql)
     End Sub
 
     Public Sub Tamplidt(ByVal ttag As String)
         If ttag = "bl" Then
-            csql = "select idtransbeli,Tanggal,NamaGudang,namaKaryawan from tokotrans.dbo.ft_PembelianSpl('" & PKey & "','" & SKey & "')"
+            csql = "select idtransbeli,Tanggal,NamaGudang,namaKaryawan,Jumlah,Total,HrgDiskon from tokotrans.dbo.ft_PembelianSpl('" & PKey & "','" & SKey & "')"
         ElseIf ttag = "ps" Then
             csql = "select IdPesanan,Tanggal,NamaPembeli,NamaBarang from TokoTrans.dbo.ft_PesananPbl('" & PKey & "','" & SKey & "')"
         ElseIf ttag = "pj" Then
@@ -303,6 +310,7 @@ Public Class tempdt2
                 csql = "select IdPesanan,TglInput,IdPembeli,IdBarang,Status from TokoTrans.dbo.ft_TerimaPesananMenu('" & PKey & "','" & ttag & "')"
 
         End Select
+        Me.lv1.Tag = ttag
         lvListAutoMain(lv1, pb, csql)
     End Sub
 
