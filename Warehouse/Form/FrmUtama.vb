@@ -92,6 +92,16 @@ Public Class FrmUtama
             .Show()
         End With
     End Sub
+
+    Private Sub HutangToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HutangToolStripMenuItem.Click
+        Dim frmexplo As New FrmExplo
+        With frmexplo
+            .MdiParent = Me : noform = +1
+            .Text = "Bayar Hutang " & noform
+            .Tag = "bayar"
+            .Show()
+        End With
+    End Sub
 End Class
 
 'Public Class samakanjam

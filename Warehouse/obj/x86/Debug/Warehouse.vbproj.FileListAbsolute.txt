@@ -47,3 +47,4 @@ C:\Users\user\Downloads\Compressed\Warehouse\Warehouse\obj\x86\Debug\Warehouse.v
 C:\Users\user\Downloads\Compressed\Warehouse\Warehouse\obj\x86\Debug\Warehouse.exe
 C:\Users\user\Downloads\Compressed\Warehouse\Warehouse\obj\x86\Debug\Warehouse.xml
 C:\Users\user\Downloads\Compressed\Warehouse\Warehouse\obj\x86\Debug\Warehouse.pdb
+D:\auf\VisualBasic\Warehouse\Warehouse\obj\x86\Debug\Warehouse.FrmHutang.resources

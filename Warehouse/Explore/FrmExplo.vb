@@ -79,6 +79,9 @@ Public Class FrmExplo
         ElseIf Me.Tag = "jual" Then
             dttemp.ndKey = "pj"
             dttemp.BukaForm(Me.Tag)
+        ElseIf Me.Tag = "bayar" Then
+            dttemp.ndKey = "byr"
+            dttemp.BukaForm(Me.Tag)
         End If
     End Sub
     Private Sub FrmExplo_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
@@ -98,6 +101,10 @@ Public Class FrmExplo
                 dttemp.BukaForm(Me.Tag)
             ElseIf Me.Tag = "Terima" Then
                 dttemp.ndKey = "tp!diterima"
+                nPKey = lvi.Text
+                dttemp.BukaForm(Me.Tag)
+            ElseIf Me.Tag = "bayar" Then
+                dttemp.ndKey = "byr"
                 nPKey = lvi.Text
                 dttemp.BukaForm(Me.Tag)
             End If
@@ -262,6 +269,7 @@ Public Class tempdt2
             troot1 = troot.Nodes.Add("ts", "Terima Pesanan")
             troot1 = troot.Nodes.Add("tp", "Penjualan")
             troot1 = troot.Nodes.Add("tb", "Pembelian")
+            troot1 = troot.Nodes.Add("byr", "Bayar Hutang")
             troot.Expand()
 
             troot = .Nodes.Add("gd", "Gudang")
@@ -295,7 +303,7 @@ Public Class tempdt2
 
     Public Sub Tamplidt(ByVal ttag As String)
         If ttag = "bl" Then
-            csql = "select idtransbeli,Tanggal,NamaGudang,namaKaryawan,Jumlah,Total,HrgDiskon from tokotrans.dbo.ft_PembelianSpl('" & PKey & "','" & SKey & "')"
+            csql = "select idtransbeli,Tanggal,NamaGudang,namaKaryawan,Jumlah,Total,HrgDiskon,bayar,HrgDiskon-bayar Hutang from tokotrans.dbo.ft_PembelianSpl('" & PKey & "','" & SKey & "')"
         ElseIf ttag = "ps" Then
             csql = "select IdPesanan,Tanggal,NamaPembeli,NamaBarang from TokoTrans.dbo.ft_PesananPbl('" & PKey & "','" & SKey & "')"
         ElseIf ttag = "pj" Then
@@ -462,6 +470,10 @@ Public Class tempdt2
             Case "jual"
                 If ndKey = "pj" Then
                     FrmTransJual.bukaform(FrmUtama, nPKey)
+                End If
+            Case "bayar"
+                If ndKey = "byr" Then
+                    FrmHutang.bukaform(FrmUtama, nPKey)
                 End If
         End Select
     End Sub
