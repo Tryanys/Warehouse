@@ -29,9 +29,6 @@ Public Class FrmTransBeli
             MessageBox.Show("Error: " & ex.Message)
         End Try
     End Sub
-    Private Sub FrmTransBeli_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
 
     Private Sub ambilkaryawan()
         cb2.Items.Clear()

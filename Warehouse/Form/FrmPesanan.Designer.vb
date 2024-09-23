@@ -53,9 +53,10 @@ Partial Class FrmPesanan
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(34, 24)
+        Me.Label1.Location = New System.Drawing.Point(45, 30)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(66, 13)
+        Me.Label1.Size = New System.Drawing.Size(86, 17)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "No Pesanan"
         '
@@ -68,75 +69,85 @@ Partial Class FrmPesanan
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Location = New System.Drawing.Point(37, 50)
+        Me.GroupBox1.Location = New System.Drawing.Point(49, 62)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(174, 100)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Size = New System.Drawing.Size(232, 123)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Barang"
         '
         'btn1
         '
-        Me.btn1.Location = New System.Drawing.Point(141, 20)
+        Me.btn1.Location = New System.Drawing.Point(188, 25)
+        Me.btn1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btn1.Name = "btn1"
-        Me.btn1.Size = New System.Drawing.Size(27, 23)
+        Me.btn1.Size = New System.Drawing.Size(36, 28)
         Me.btn1.TabIndex = 8
         Me.btn1.Text = "..."
         Me.btn1.UseVisualStyleBackColor = True
         '
         'tb4
         '
-        Me.tb4.Location = New System.Drawing.Point(65, 70)
+        Me.tb4.Location = New System.Drawing.Point(87, 86)
+        Me.tb4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.tb4.Name = "tb4"
-        Me.tb4.Size = New System.Drawing.Size(89, 20)
+        Me.tb4.Size = New System.Drawing.Size(117, 22)
         Me.tb4.TabIndex = 7
         '
         'tb3
         '
-        Me.tb3.Location = New System.Drawing.Point(65, 45)
+        Me.tb3.Location = New System.Drawing.Point(87, 55)
+        Me.tb3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.tb3.Name = "tb3"
-        Me.tb3.Size = New System.Drawing.Size(89, 20)
+        Me.tb3.Size = New System.Drawing.Size(117, 22)
         Me.tb3.TabIndex = 6
         '
         'tb2
         '
-        Me.tb2.Location = New System.Drawing.Point(65, 22)
+        Me.tb2.Location = New System.Drawing.Point(87, 27)
+        Me.tb2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.tb2.Name = "tb2"
-        Me.tb2.Size = New System.Drawing.Size(75, 20)
+        Me.tb2.Size = New System.Drawing.Size(99, 22)
         Me.tb2.TabIndex = 5
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(6, 73)
+        Me.Label4.Location = New System.Drawing.Point(8, 90)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(41, 13)
+        Me.Label4.Size = New System.Drawing.Size(53, 17)
         Me.Label4.TabIndex = 4
         Me.Label4.Text = "Satuan"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(6, 48)
+        Me.Label3.Location = New System.Drawing.Point(8, 59)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(35, 13)
+        Me.Label3.Size = New System.Drawing.Size(45, 17)
         Me.Label3.TabIndex = 3
         Me.Label3.Text = "Nama"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(6, 25)
+        Me.Label2.Location = New System.Drawing.Point(8, 31)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(53, 13)
+        Me.Label2.Size = New System.Drawing.Size(69, 17)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Id Barang"
         '
         'tb1
         '
-        Me.tb1.Location = New System.Drawing.Point(102, 21)
+        Me.tb1.Location = New System.Drawing.Point(136, 26)
+        Me.tb1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.tb1.Name = "tb1"
-        Me.tb1.Size = New System.Drawing.Size(89, 20)
+        Me.tb1.Size = New System.Drawing.Size(117, 22)
         Me.tb1.TabIndex = 8
         '
         'GroupBox2
@@ -147,124 +158,139 @@ Partial Class FrmPesanan
         Me.GroupBox2.Controls.Add(Me.Label7)
         Me.GroupBox2.Controls.Add(Me.Label6)
         Me.GroupBox2.Controls.Add(Me.Label5)
-        Me.GroupBox2.Location = New System.Drawing.Point(243, 50)
+        Me.GroupBox2.Location = New System.Drawing.Point(324, 62)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(172, 100)
+        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox2.Size = New System.Drawing.Size(229, 123)
         Me.GroupBox2.TabIndex = 9
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Pembeli"
         '
         'tb7
         '
-        Me.tb7.Location = New System.Drawing.Point(68, 70)
+        Me.tb7.Location = New System.Drawing.Point(91, 86)
+        Me.tb7.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.tb7.Name = "tb7"
-        Me.tb7.Size = New System.Drawing.Size(89, 20)
+        Me.tb7.Size = New System.Drawing.Size(117, 22)
         Me.tb7.TabIndex = 12
         '
         'tb6
         '
-        Me.tb6.Location = New System.Drawing.Point(68, 45)
+        Me.tb6.Location = New System.Drawing.Point(91, 55)
+        Me.tb6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.tb6.Name = "tb6"
-        Me.tb6.Size = New System.Drawing.Size(89, 20)
+        Me.tb6.Size = New System.Drawing.Size(117, 22)
         Me.tb6.TabIndex = 11
         '
         'tb5
         '
-        Me.tb5.Location = New System.Drawing.Point(68, 22)
+        Me.tb5.Location = New System.Drawing.Point(91, 27)
+        Me.tb5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.tb5.Name = "tb5"
-        Me.tb5.Size = New System.Drawing.Size(89, 20)
+        Me.tb5.Size = New System.Drawing.Size(117, 22)
         Me.tb5.TabIndex = 8
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(6, 73)
+        Me.Label7.Location = New System.Drawing.Point(8, 90)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(39, 13)
+        Me.Label7.Size = New System.Drawing.Size(51, 17)
         Me.Label7.TabIndex = 10
         Me.Label7.Text = "Alamat"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(6, 48)
+        Me.Label6.Location = New System.Drawing.Point(8, 59)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(35, 13)
+        Me.Label6.Size = New System.Drawing.Size(45, 17)
         Me.Label6.TabIndex = 9
         Me.Label6.Text = "Nama"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(6, 25)
+        Me.Label5.Location = New System.Drawing.Point(8, 31)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(56, 13)
+        Me.Label5.Size = New System.Drawing.Size(73, 17)
         Me.Label5.TabIndex = 8
         Me.Label5.Text = "Id Pembeli"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(445, 75)
+        Me.Label8.Location = New System.Drawing.Point(593, 92)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(40, 13)
+        Me.Label8.Size = New System.Drawing.Size(53, 17)
         Me.Label8.TabIndex = 13
         Me.Label8.Text = "Jumlah"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(445, 104)
+        Me.Label9.Location = New System.Drawing.Point(593, 128)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(36, 13)
+        Me.Label9.Size = New System.Drawing.Size(47, 17)
         Me.Label9.TabIndex = 14
         Me.Label9.Text = "Harga"
         '
         'tb8
         '
-        Me.tb8.Location = New System.Drawing.Point(497, 72)
+        Me.tb8.Location = New System.Drawing.Point(663, 89)
+        Me.tb8.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.tb8.Name = "tb8"
-        Me.tb8.Size = New System.Drawing.Size(89, 20)
+        Me.tb8.Size = New System.Drawing.Size(117, 22)
         Me.tb8.TabIndex = 13
         '
         'tb9
         '
         Me.tb9.Enabled = False
-        Me.tb9.Location = New System.Drawing.Point(497, 101)
+        Me.tb9.Location = New System.Drawing.Point(663, 124)
+        Me.tb9.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.tb9.Name = "tb9"
-        Me.tb9.Size = New System.Drawing.Size(89, 20)
+        Me.tb9.Size = New System.Drawing.Size(117, 22)
         Me.tb9.TabIndex = 15
         '
         'lv
         '
         Me.lv.HideSelection = False
-        Me.lv.Location = New System.Drawing.Point(37, 174)
+        Me.lv.Location = New System.Drawing.Point(49, 214)
+        Me.lv.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.lv.Name = "lv"
-        Me.lv.Size = New System.Drawing.Size(549, 146)
+        Me.lv.Size = New System.Drawing.Size(731, 179)
         Me.lv.TabIndex = 16
         Me.lv.UseCompatibleStateImageBehavior = False
         '
         'lbrec
         '
         Me.lbrec.AutoSize = True
-        Me.lbrec.Location = New System.Drawing.Point(38, 323)
+        Me.lbrec.Location = New System.Drawing.Point(51, 398)
+        Me.lbrec.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lbrec.Name = "lbrec"
-        Me.lbrec.Size = New System.Drawing.Size(30, 13)
+        Me.lbrec.Size = New System.Drawing.Size(37, 17)
         Me.lbrec.TabIndex = 17
         Me.lbrec.Text = "Rec."
         '
         'pb
         '
-        Me.pb.Location = New System.Drawing.Point(529, 323)
+        Me.pb.Location = New System.Drawing.Point(705, 398)
+        Me.pb.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pb.Name = "pb"
-        Me.pb.Size = New System.Drawing.Size(57, 10)
+        Me.pb.Size = New System.Drawing.Size(76, 12)
         Me.pb.TabIndex = 18
         '
         'FrmPesanan
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(626, 339)
+        Me.ClientSize = New System.Drawing.Size(835, 417)
         Me.Controls.Add(Me.pb)
         Me.Controls.Add(Me.lbrec)
         Me.Controls.Add(Me.lv)
@@ -276,6 +302,7 @@ Partial Class FrmPesanan
         Me.Controls.Add(Me.tb1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label1)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FrmPesanan"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pesanan"

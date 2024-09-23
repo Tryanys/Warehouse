@@ -9,7 +9,6 @@ Public Class FrmTransJual
         Me.Show()
         mform = nForm : mform.Enabled = False
         tb1.Text = id
-        tb1.Focus() : SendKeys.Send("{end}")
         tampdt()
     End Sub
     Private Sub tampdt()

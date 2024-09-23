@@ -395,7 +395,24 @@ Public Class tempdt2
         End Try
     End Sub
 
-
+    Public Sub MenuBayar(ByVal thn As Integer)
+        Dim db As New msaConn
+        Try
+            csql = "select idsuplier,namaSuplier from tokotrans.dbo.ft_BayarHutangMenu('" & thn & "')"
+            With tv
+                .Nodes.Clear()
+                troot = .Nodes.Add("byr", "Bayar Hutang " & thn.ToString)
+                For Each dt As DataRow In db.ExecQuery(csql).Rows
+                    troot1 = troot.Nodes.Add("byr!" & dt(0), dt(1))
+                Next
+                troot.Expand()
+            End With
+        Catch ex As Exception
+            MsgBox(Err.Description, "cek err")
+        Finally
+            db = Nothing
+        End Try
+    End Sub
 
     Public Sub dtMaster()
         Try

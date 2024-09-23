@@ -22,10 +22,6 @@ Public Class FrmPesanan
         End With
     End Sub
 
-    Private Sub FrmPesanan_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-
     Private Sub FrmPesanan_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         FrmUtama.Enabled = True
         dttemp = Nothing
@@ -164,5 +160,9 @@ Public Class FrmPesanan
 
     Private Sub FrmPesanan_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         mform.Enabled = True
+    End Sub
+
+    Private Sub FrmPesanan_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class
