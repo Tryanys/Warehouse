@@ -63,6 +63,9 @@ Public Class FrmExplo
             ElseIf itm(0) = "pj" Then
                 dttemp.PKey = tthn.Text : dttemp.SKey = itm(1)
                 dttemp.Tamplidt(itm(0))
+            ElseIf itm(0) = "byr" Then
+                dttemp.PKey = tthn.Text : dttemp.SKey = itm(1)
+                dttemp.Tamplidt(itm(0))
             End If
         End If
         Me.ts1.Text = Me.tv.SelectedNode.Text
@@ -145,6 +148,7 @@ Public Class FrmExplo
         If Me.Tag = "pesan" Then dttemp.MenuPesanan(tthn.Text)
         If Me.Tag = "Terima" Then dttemp.MenuTerimaPesanan(tthn.Text)
         If Me.Tag = "jual" Then dttemp.MenuPenjualan(tthn.Text)
+        If Me.Tag = "bayar" Then dttemp.MenuBayar(tthn.Text)
     End Sub
 
 
@@ -308,6 +312,8 @@ Public Class tempdt2
             csql = "select IdPesanan,Tanggal,NamaPembeli,NamaBarang from TokoTrans.dbo.ft_PesananPbl('" & PKey & "','" & SKey & "')"
         ElseIf ttag = "pj" Then
             csql = "select IdTransJual,IdEKS,IdPesanan,IdPembeli,IdKaryawan from TokoTrans.dbo.ft_PenjualanPbl('" & PKey & "','" & SKey & "')"
+        ElseIf ttag = "byr" Then
+            csql = "select IdHutang,IDTransBeli,Tanggal,uraian,Debet,Kredit,KetPost from TokoTrans.dbo.ft_BayarHutangSpl('" & PKey & "','" & SKey & "')"
         End If
         Select Case ttag
             Case "Pesanan Diterima"
@@ -420,6 +426,7 @@ Public Class tempdt2
             If ndKey = "ps" Then csql = "select * from TokoTrans..Pesanan order by IdPesanan"
             If ndKey = "tb" Then csql = "select * from TokoTrans..TransBeli order by IdTransBeli"
             If ndKey = "tp" Then csql = "select * from TokoTrans..TransJual order by IdTransJual"
+            If ndKey = "byr" Then csql = "select * from TokoTrans..bkHutang"
 
             lvListAutoMain(lv1, pb, csql)
             Me.lv1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)

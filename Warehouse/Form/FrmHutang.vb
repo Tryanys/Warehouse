@@ -12,10 +12,6 @@ Public Class FrmHutang
         'tb2.Focus() : SendKeys.Send("{end}")
     End Sub
 
-    Private Sub FrmHutang_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-
     Private Sub FrmHutang_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         FrmUtama.Enabled = True
         dtempt = Nothing

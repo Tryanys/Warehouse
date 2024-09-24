@@ -216,4 +216,5 @@ Public Class FrmTransBeli
     Private Sub FrmTransBeli_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         mform.Enabled = True
     End Sub
+
 End Class
