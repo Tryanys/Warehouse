@@ -55,7 +55,7 @@
             Microsoft.VisualBasic.TimeOfDay = d 'Your time...
             Microsoft.VisualBasic.DateString = Format(New Date(d.Year, d.Month, d.Day), "MM/dd/yyyy") 'The date...
         Catch ex As Exception
-            MsgBox("Jalankan as Administrator") 'You might have to run as Administrator...?
+            'MsgBox("Jalankan as Administrator") 'You might have to run as Administrator...?
             Exit Sub
         End Try
     End Sub

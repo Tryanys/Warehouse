@@ -290,15 +290,17 @@ Public Class tempdt2
 
         lvListAutoMain(lv2, pb, csql)
     End Sub
-    Public Sub TampilDetailPesanan(ByVal idPembeli As String)
-        Dim csql As String = "SELECT IdPesanan,IdPembeli,IdBarang,Tanggal,NamaPembeli,NamaBarang,JmlBrg,Harga,Diskon,Satuan,Status FROM TokoTrans.dbo.ft_PesananPblDet('" & PKey & "','" & SKey & "')"
-        lv2.Items.Clear()
+    'Public Sub TampilDetailPesanan(ByVal idPembeli As String)
+    '    Dim csql As String = "SELECT IdPesanan,IdPembeli,IdBarang,Tanggal,NamaPembeli,NamaBarang,JmlBrg,Harga,Diskon,Satuan,Status FROM TokoTrans.dbo.ft_PesananPblDet('" & PKey & "','" & SKey & "')"
+    '    lv2.Items.Clear()
 
-        lvListAutoMain(lv2, pb, csql)
-    End Sub
+    '    lvListAutoMain(lv2, pb, csql)
+    'End Sub
     Public Sub TampilDetailTransaksi(ByVal ttag As String)
         If ttag = "bl" Then
             csql = "SELECT IdBarang,NamaBarang,Satuan,Jumlah,Harga,Total,Diskon,HrgDis FROM TokoTrans.dbo.ft_PembelianSplDet('" & PKey & "')"
+        ElseIf ttag = "ps" Then
+            csql = "SELECT IdPesanan,IdPembeli,IdBarang,Tanggal,NamaPembeli,NamaBarang,JmlBrg,Harga,Diskon,Satuan,Status FROM TokoTrans.dbo.ft_PesananPblDet('" & PKey & "')"
 
         End If
 
@@ -313,7 +315,7 @@ Public Class tempdt2
         ElseIf ttag = "pj" Then
             csql = "select IdTransJual,IdEKS,IdPesanan,IdPembeli,IdKaryawan from TokoTrans.dbo.ft_PenjualanPbl('" & PKey & "','" & SKey & "')"
         ElseIf ttag = "byr" Then
-            csql = "select IdHutang,IDTransBeli,Tanggal,uraian,Debet,Kredit,KetPost from TokoTrans.dbo.ft_BayarHutangSpl('" & PKey & "','" & SKey & "')"
+            csql = "select idHutang,IDTransBeli,Tanggal,uraian,Debet,Kredit,KetPost from TokoTrans.dbo.ft_BayarHutangSpl('" & PKey & "','" & SKey & "')"
         End If
         Select Case ttag
             Case "Pesanan Diterima"
