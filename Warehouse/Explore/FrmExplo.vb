@@ -37,10 +37,11 @@ Public Class FrmExplo
     Private Sub tv_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles tv.AfterSelect
         dttemp.ndKey = tv.SelectedNode.Name
         itm = Split(dttemp.ndKey, "!")
+        If itm.GetUpperBound(0) = 0 Then Exit Sub
         If Me.Tag = "Trans" Then
             dttemp.dtMaster()
         Else
-            If itm(0) = "bl" Then
+            If itm(0) = "bl" Or itm(0) = "byr" Then
                 dttemp.PKey = tthn.Text
                 dttemp.SKey = itm(1)
                 dttemp.Tamplidt(itm(0))
@@ -63,9 +64,9 @@ Public Class FrmExplo
             ElseIf itm(0) = "pj" Then
                 dttemp.PKey = tthn.Text : dttemp.SKey = itm(1)
                 dttemp.Tamplidt(itm(0))
-            ElseIf itm(0) = "byr" Then
-                dttemp.PKey = tthn.Text : dttemp.SKey = itm(1)
-                dttemp.Tamplidt(itm(0))
+                'ElseIf itm(0) = "byr" Then
+                'dttemp.PKey = tthn.Text : dttemp.SKey = itm(1)
+                'dttemp.Tamplidt(itm(0))
             End If
         End If
         Me.ts1.Text = Me.tv.SelectedNode.Text
@@ -82,7 +83,7 @@ Public Class FrmExplo
         ElseIf Me.Tag = "jual" Then
             dttemp.ndKey = "pj"
             dttemp.BukaForm(Me.Tag)
-        ElseIf Me.Tag = "bayar" Then
+        ElseIf Me.Tag = "bht" Then
             dttemp.ndKey = "byr"
             dttemp.BukaForm(Me.Tag)
         End If
@@ -145,10 +146,10 @@ Public Class FrmExplo
         If Len(tthn.Text) <> 4 Then Exit Sub
         isiPD(tthn.Text)
         If Me.Tag = "beli" Then dttemp.MenuPembelian(tthn.Text)
-        If Me.Tag = "pesan" Then dttemp.MenuPesanan(tthn.Text)
-        If Me.Tag = "Terima" Then dttemp.MenuTerimaPesanan(tthn.Text)
+        If Me.Tag = "ps" Then dttemp.MenuPesanan(tthn.Text)
+        If Me.Tag = "tp" Then dttemp.MenuTerimaPesanan(tthn.Text)
         If Me.Tag = "jual" Then dttemp.MenuPenjualan(tthn.Text)
-        If Me.Tag = "bayar" Then dttemp.MenuBayar(tthn.Text)
+        If Me.Tag = "bht" Then dttemp.MenuBayar(tthn.Text)
     End Sub
 
 
@@ -301,21 +302,22 @@ Public Class tempdt2
             csql = "SELECT IdBarang,NamaBarang,Satuan,Jumlah,Harga,Total,Diskon,HrgDis FROM TokoTrans.dbo.ft_PembelianSplDet('" & PKey & "')"
         ElseIf ttag = "ps" Then
             csql = "SELECT IdPesanan,IdPembeli,IdBarang,Tanggal,NamaPembeli,NamaBarang,JmlBrg,Harga,Diskon,Satuan,Status FROM TokoTrans.dbo.ft_PesananPblDet('" & PKey & "')"
-
+        ElseIf ttag = "byr" Then
+            csql = "SELECT IdHutang,  Tanggal,  Uraian,  Debet, Kredit, Saldo FROM TokoTrans.dbo.ft_BayarHutangSplDet('" & PKey & "')"
         End If
 
         lvListAutoMain(lv2, pb, csql)
     End Sub
 
     Public Sub Tamplidt(ByVal ttag As String)
-        If ttag = "bl" Then
+        If ttag = "bl" Or ttag = "byr" Then
             csql = "select idtransbeli,Tanggal,NamaGudang,namaKaryawan,Jumlah,Total,HrgDiskon,bayar,HrgDiskon-bayar Hutang from tokotrans.dbo.ft_PembelianSpl('" & PKey & "','" & SKey & "')"
         ElseIf ttag = "ps" Then
             csql = "select IdPesanan,Tanggal,NamaPembeli,NamaBarang from TokoTrans.dbo.ft_PesananPbl('" & PKey & "','" & SKey & "')"
         ElseIf ttag = "pj" Then
             csql = "select IdTransJual,IdEKS,IdPesanan,IdPembeli,IdKaryawan from TokoTrans.dbo.ft_PenjualanPbl('" & PKey & "','" & SKey & "')"
-        ElseIf ttag = "byr" Then
-            csql = "select idHutang,IDTransBeli,Tanggal,uraian,Debet,Kredit,KetPost from TokoTrans.dbo.ft_BayarHutangSpl('" & PKey & "','" & SKey & "')"
+            'ElseIf ttag = "byr" Then
+            'csql = "select idHutang,IDTransBeli,Tanggal,uraian,Debet,Kredit,KetPost from TokoTrans.dbo.ft_BayarHutangSpl('" & PKey & "','" & SKey & "')"
         End If
         Select Case ttag
             Case "Pesanan Diterima"
@@ -406,7 +408,8 @@ Public Class tempdt2
     Public Sub MenuBayar(ByVal thn As Integer)
         Dim db As New msaConn
         Try
-            csql = "select idsuplier,namaSuplier from tokotrans.dbo.ft_BayarHutangMenu('" & thn & "')"
+            'csql = "select idsuplier,namaSuplier from tokotrans.dbo.ft_BayarHutangMenu('" & thn & "')"
+            csql = "select idsuplier,namaSuplier from tokotrans.dbo.ft_PembelianMenu('" & thn & "')"
             With tv
                 .Nodes.Clear()
                 troot = .Nodes.Add("byr", "Bayar Hutang " & thn.ToString)
@@ -497,7 +500,7 @@ Public Class tempdt2
                 If ndKey = "pj" Then
                     FrmTransJual.bukaform(FrmUtama, nPKey)
                 End If
-            Case "bayar"
+            Case "bht"
                 If ndKey = "byr" Then
                     FrmHutang.bukaform(FrmUtama, nPKey)
                 End If

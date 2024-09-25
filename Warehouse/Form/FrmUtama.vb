@@ -68,7 +68,7 @@ Public Class FrmUtama
         With frmexplo
             .MdiParent = Me : noform = +1
             .Text = "Penjualan " & noform
-            .Tag = "jual"
+            .Tag = "jl"
             .Show()
         End With
     End Sub
@@ -78,7 +78,7 @@ Public Class FrmUtama
         With frmexplo
             .MdiParent = Me : noform = +1
             .Text = "Pesanan " & noform
-            .Tag = "pesan"
+            .Tag = "ps"
             .Show()
         End With
     End Sub
@@ -87,8 +87,8 @@ Public Class FrmUtama
         Dim frmexplo As New FrmExplo
         With frmexplo
             .MdiParent = Me : noform = +1
-            .Text = "TerimaPesanan " & noform
-            .Tag = "Terima"
+            .Text = "Terima Pesanan " & noform
+            .Tag = "tp"
             .Show()
         End With
     End Sub
@@ -98,7 +98,7 @@ Public Class FrmUtama
         With frmexplo
             .MdiParent = Me : noform = +1
             .Text = "Bayar Hutang " & noform
-            .Tag = "bayar"
+            .Tag = "bht"
             .Show()
         End With
     End Sub
