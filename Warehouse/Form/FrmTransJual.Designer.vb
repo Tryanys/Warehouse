@@ -23,12 +23,14 @@ Partial Class FrmTransJual
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.cb1 = New System.Windows.Forms.ComboBox()
+        Me.Label13 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.tb12 = New System.Windows.Forms.TextBox()
+        Me.tb13 = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.tb11 = New System.Windows.Forms.TextBox()
+        Me.tb12 = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.tb10 = New System.Windows.Forms.TextBox()
+        Me.tb11 = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.tb9 = New System.Windows.Forms.TextBox()
@@ -54,8 +56,8 @@ Partial Class FrmTransJual
         Me.lv = New System.Windows.Forms.ListView()
         Me.lbrec = New System.Windows.Forms.Label()
         Me.pb = New System.Windows.Forms.ProgressBar()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.cb1 = New System.Windows.Forms.ComboBox()
+        Me.tb10 = New System.Windows.Forms.TextBox()
+        Me.Label14 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -76,13 +78,30 @@ Partial Class FrmTransJual
         Me.Panel1.Size = New System.Drawing.Size(765, 169)
         Me.Panel1.TabIndex = 1
         '
+        'cb1
+        '
+        Me.cb1.FormattingEnabled = True
+        Me.cb1.Location = New System.Drawing.Point(315, 14)
+        Me.cb1.Name = "cb1"
+        Me.cb1.Size = New System.Drawing.Size(121, 21)
+        Me.cb1.TabIndex = 7
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(239, 17)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(52, 13)
+        Me.Label13.TabIndex = 6
+        Me.Label13.Text = "Ekspedisi"
+        '
         'GroupBox3
         '
-        Me.GroupBox3.Controls.Add(Me.tb12)
+        Me.GroupBox3.Controls.Add(Me.tb13)
         Me.GroupBox3.Controls.Add(Me.Label12)
-        Me.GroupBox3.Controls.Add(Me.tb11)
+        Me.GroupBox3.Controls.Add(Me.tb12)
         Me.GroupBox3.Controls.Add(Me.Label11)
-        Me.GroupBox3.Controls.Add(Me.tb10)
+        Me.GroupBox3.Controls.Add(Me.tb11)
         Me.GroupBox3.Controls.Add(Me.Label10)
         Me.GroupBox3.Location = New System.Drawing.Point(561, 45)
         Me.GroupBox3.Name = "GroupBox3"
@@ -91,12 +110,12 @@ Partial Class FrmTransJual
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Karyawan"
         '
-        'tb12
+        'tb13
         '
-        Me.tb12.Location = New System.Drawing.Point(82, 72)
-        Me.tb12.Name = "tb12"
-        Me.tb12.Size = New System.Drawing.Size(87, 20)
-        Me.tb12.TabIndex = 23
+        Me.tb13.Location = New System.Drawing.Point(79, 75)
+        Me.tb13.Name = "tb13"
+        Me.tb13.Size = New System.Drawing.Size(87, 20)
+        Me.tb13.TabIndex = 23
         '
         'Label12
         '
@@ -107,12 +126,12 @@ Partial Class FrmTransJual
         Me.Label12.TabIndex = 22
         Me.Label12.Text = "Alamat"
         '
-        'tb11
+        'tb12
         '
-        Me.tb11.Location = New System.Drawing.Point(82, 48)
-        Me.tb11.Name = "tb11"
-        Me.tb11.Size = New System.Drawing.Size(87, 20)
-        Me.tb11.TabIndex = 21
+        Me.tb12.Location = New System.Drawing.Point(79, 49)
+        Me.tb12.Name = "tb12"
+        Me.tb12.Size = New System.Drawing.Size(87, 20)
+        Me.tb12.TabIndex = 21
         '
         'Label11
         '
@@ -123,12 +142,12 @@ Partial Class FrmTransJual
         Me.Label11.TabIndex = 20
         Me.Label11.Text = "Nama"
         '
-        'tb10
+        'tb11
         '
-        Me.tb10.Location = New System.Drawing.Point(79, 23)
-        Me.tb10.Name = "tb10"
-        Me.tb10.Size = New System.Drawing.Size(90, 20)
-        Me.tb10.TabIndex = 19
+        Me.tb11.Location = New System.Drawing.Point(76, 22)
+        Me.tb11.Name = "tb11"
+        Me.tb11.Size = New System.Drawing.Size(90, 20)
+        Me.tb11.TabIndex = 19
         '
         'Label10
         '
@@ -141,6 +160,8 @@ Partial Class FrmTransJual
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.tb10)
+        Me.GroupBox2.Controls.Add(Me.Label14)
         Me.GroupBox2.Controls.Add(Me.tb9)
         Me.GroupBox2.Controls.Add(Me.Label9)
         Me.GroupBox2.Controls.Add(Me.tb8)
@@ -357,22 +378,22 @@ Partial Class FrmTransJual
         Me.pb.Size = New System.Drawing.Size(58, 13)
         Me.pb.TabIndex = 10
         '
-        'Label13
+        'tb10
         '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(239, 17)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(52, 13)
-        Me.Label13.TabIndex = 6
-        Me.Label13.Text = "Ekspedisi"
+        Me.tb10.Enabled = False
+        Me.tb10.Location = New System.Drawing.Point(225, 72)
+        Me.tb10.Name = "tb10"
+        Me.tb10.Size = New System.Drawing.Size(79, 20)
+        Me.tb10.TabIndex = 19
         '
-        'cb1
+        'Label14
         '
-        Me.cb1.FormattingEnabled = True
-        Me.cb1.Location = New System.Drawing.Point(315, 14)
-        Me.cb1.Name = "cb1"
-        Me.cb1.Size = New System.Drawing.Size(121, 21)
-        Me.cb1.TabIndex = 7
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(178, 75)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(36, 13)
+        Me.Label14.TabIndex = 18
+        Me.Label14.Text = "Harga"
         '
         'FrmTransJual
         '
@@ -421,11 +442,11 @@ Partial Class FrmTransJual
     Friend WithEvents Label9 As Label
     Friend WithEvents tb8 As TextBox
     Friend WithEvents Label8 As Label
-    Friend WithEvents tb11 As TextBox
-    Friend WithEvents Label11 As Label
-    Friend WithEvents tb10 As TextBox
-    Friend WithEvents Label10 As Label
     Friend WithEvents tb12 As TextBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents tb11 As TextBox
+    Friend WithEvents Label10 As Label
+    Friend WithEvents tb13 As TextBox
     Friend WithEvents Label12 As Label
     Friend WithEvents lv As ListView
     Friend WithEvents lbrec As Label
@@ -433,4 +454,6 @@ Partial Class FrmTransJual
     Friend WithEvents Button1 As Button
     Friend WithEvents cb1 As ComboBox
     Friend WithEvents Label13 As Label
+    Friend WithEvents tb10 As TextBox
+    Friend WithEvents Label14 As Label
 End Class

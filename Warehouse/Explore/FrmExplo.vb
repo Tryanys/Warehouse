@@ -61,7 +61,7 @@ Public Class FrmExplo
                     Case "dikirim"
                         dttemp.Tamplidt("Dikirim")
                 End Select
-            ElseIf itm(0) = "pj" Then
+            ElseIf itm(0) = "pj" Or itm(0) = "bpt" Then
                 dttemp.PKey = tthn.Text : dttemp.SKey = itm(1)
                 dttemp.Tamplidt(itm(0))
                 'ElseIf itm(0) = "byr" Then
@@ -80,11 +80,14 @@ Public Class FrmExplo
         ElseIf Me.Tag = "pesan" Then
             dttemp.ndKey = "ps"
             dttemp.BukaForm(Me.Tag)
-        ElseIf Me.Tag = "jual" Then
+        ElseIf Me.Tag = "jl" Then
             dttemp.ndKey = "pj"
             dttemp.BukaForm(Me.Tag)
         ElseIf Me.Tag = "bht" Then
             dttemp.ndKey = "byr"
+            dttemp.BukaForm(Me.Tag)
+        ElseIf Me.Tag = "bpt" Then
+            dttemp.ndKey = "bpt"
             dttemp.BukaForm(Me.Tag)
         End If
     End Sub
@@ -148,8 +151,9 @@ Public Class FrmExplo
         If Me.Tag = "beli" Then dttemp.MenuPembelian(tthn.Text)
         If Me.Tag = "ps" Then dttemp.MenuPesanan(tthn.Text)
         If Me.Tag = "tp" Then dttemp.MenuTerimaPesanan(tthn.Text)
-        If Me.Tag = "jual" Then dttemp.MenuPenjualan(tthn.Text)
+        If Me.Tag = "jl" Then dttemp.MenuPenjualan(tthn.Text)
         If Me.Tag = "bht" Then dttemp.MenuBayar(tthn.Text)
+        If Me.Tag = "bpt" Then dttemp.MenuPiutang(tthn.Text)
     End Sub
 
 
@@ -304,6 +308,10 @@ Public Class tempdt2
             csql = "SELECT IdPesanan,IdPembeli,IdBarang,Tanggal,NamaPembeli,NamaBarang,JmlBrg,Harga,Diskon,Satuan,Status FROM TokoTrans.dbo.ft_PesananPblDet('" & PKey & "')"
         ElseIf ttag = "byr" Then
             csql = "SELECT IdHutang,  Tanggal,  Uraian,  Debet, Kredit, Saldo FROM TokoTrans.dbo.ft_BayarHutangSplDet('" & PKey & "')"
+        ElseIf ttag = "pj" Then
+            csql = "SELECT IdBarang,NamaBarang,Satuan,Jumlah,Harga,Total,Diskon,HrgDis FROM TokoTrans.dbo.ft_PenjualanPblDet('" & PKey & "')"
+        ElseIf ttag = "bpt" Then
+            csql = "SELECT idPiutang,Tanggal,Uraian,Debet,Kredit,Saldo FROM TokoTrans.dbo.ft_BayarPiutangPblDet('" & PKey & "')"
         End If
 
         lvListAutoMain(lv2, pb, csql)
@@ -314,8 +322,8 @@ Public Class tempdt2
             csql = "select idtransbeli,Tanggal,NamaGudang,namaKaryawan,Jumlah,Total,HrgDiskon,bayar,HrgDiskon-bayar Hutang from tokotrans.dbo.ft_PembelianSpl('" & PKey & "','" & SKey & "')"
         ElseIf ttag = "ps" Then
             csql = "select IdPesanan,Tanggal,NamaPembeli,NamaBarang from TokoTrans.dbo.ft_PesananPbl('" & PKey & "','" & SKey & "')"
-        ElseIf ttag = "pj" Then
-            csql = "select IdTransJual,IdEKS,IdPesanan,IdPembeli,IdKaryawan from TokoTrans.dbo.ft_PenjualanPbl('" & PKey & "','" & SKey & "')"
+        ElseIf ttag = "pj" Or ttag = "bpt" Then
+            csql = "select IdTransJual,IdEKS,IdPesanan,IdPembeli,IdKaryawan,Jumlah,Total,HrgDiskon,Bayar,HrgDiskon-bayar Piutang from TokoTrans.dbo.ft_PenjualanPbl('" & PKey & "','" & SKey & "')"
             'ElseIf ttag = "byr" Then
             'csql = "select idHutang,IDTransBeli,Tanggal,uraian,Debet,Kredit,KetPost from TokoTrans.dbo.ft_BayarHutangSpl('" & PKey & "','" & SKey & "')"
         End If
@@ -424,6 +432,24 @@ Public Class tempdt2
             db = Nothing
         End Try
     End Sub
+    Public Sub MenuPiutang(ByVal thn As Integer)
+        Dim db As New msaConn
+        Try
+            csql = "select IdPembeli,NamaPembeli from tokotrans.dbo.ft_PenjualanMenu('" & thn & "')"
+            With tv
+                .Nodes.Clear()
+                troot = .Nodes.Add("bpt", "Bayar Hutang " & thn.ToString)
+                For Each dt As DataRow In db.ExecQuery(csql).Rows
+                    troot1 = troot.Nodes.Add("bpt!" & dt(0), dt(1))
+                Next
+                troot.Expand()
+            End With
+        Catch ex As Exception
+            MsgBox(Err.Description, "cek err")
+        Finally
+            db = Nothing
+        End Try
+    End Sub
 
     Public Sub dtMaster()
         Try
@@ -496,12 +522,16 @@ Public Class tempdt2
                 If ndKey = "ps" Then
                     FrmPesanan.bukaform(FrmUtama, nPKey)
                 End If
-            Case "jual"
+            Case "jl"
                 If ndKey = "pj" Then
                     FrmTransJual.bukaform(FrmUtama, nPKey)
                 End If
             Case "bht"
                 If ndKey = "byr" Then
+                    FrmHutang.bukaform(FrmUtama, nPKey)
+                End If
+            Case "bpt"
+                If ndKey = "bpt" Then
                     FrmHutang.bukaform(FrmUtama, nPKey)
                 End If
         End Select

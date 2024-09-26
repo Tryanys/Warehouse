@@ -102,6 +102,16 @@ Public Class FrmUtama
             .Show()
         End With
     End Sub
+
+    Private Sub PiutangToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PiutangToolStripMenuItem.Click
+        Dim frmexplo As New FrmExplo
+        With frmexplo
+            .MdiParent = Me : noform = +1
+            .Text = "Bayar Piutang " & noform
+            .Tag = "bpt"
+            .Show()
+        End With
+    End Sub
 End Class
 
 'Public Class samakanjam

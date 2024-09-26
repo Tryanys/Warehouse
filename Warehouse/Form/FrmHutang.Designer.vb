@@ -23,6 +23,8 @@ Partial Class FrmHutang
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.tb3 = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.tb2 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.tb1 = New System.Windows.Forms.TextBox()
@@ -34,8 +36,6 @@ Partial Class FrmHutang
         Me.pb = New System.Windows.Forms.ProgressBar()
         Me.lbrec = New System.Windows.Forms.Label()
         Me.lv = New System.Windows.Forms.ListView()
-        Me.tb3 = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -53,8 +53,24 @@ Partial Class FrmHutang
         Me.Panel1.Controls.Add(Me.Label10)
         Me.Panel1.Location = New System.Drawing.Point(10, 11)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(440, 127)
+        Me.Panel1.Size = New System.Drawing.Size(440, 97)
         Me.Panel1.TabIndex = 3
+        '
+        'tb3
+        '
+        Me.tb3.Location = New System.Drawing.Point(294, 39)
+        Me.tb3.Name = "tb3"
+        Me.tb3.Size = New System.Drawing.Size(62, 20)
+        Me.tb3.TabIndex = 34
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(246, 42)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(29, 13)
+        Me.Label1.TabIndex = 33
+        Me.Label1.Text = "Num"
         '
         'tb2
         '
@@ -126,7 +142,7 @@ Partial Class FrmHutang
         '
         'pb
         '
-        Me.pb.Location = New System.Drawing.Point(392, 318)
+        Me.pb.Location = New System.Drawing.Point(392, 288)
         Me.pb.Name = "pb"
         Me.pb.Size = New System.Drawing.Size(58, 13)
         Me.pb.TabIndex = 14
@@ -134,7 +150,7 @@ Partial Class FrmHutang
         'lbrec
         '
         Me.lbrec.AutoSize = True
-        Me.lbrec.Location = New System.Drawing.Point(7, 318)
+        Me.lbrec.Location = New System.Drawing.Point(7, 288)
         Me.lbrec.Name = "lbrec"
         Me.lbrec.Size = New System.Drawing.Size(30, 13)
         Me.lbrec.TabIndex = 13
@@ -143,39 +159,25 @@ Partial Class FrmHutang
         'lv
         '
         Me.lv.HideSelection = False
-        Me.lv.Location = New System.Drawing.Point(10, 144)
+        Me.lv.Location = New System.Drawing.Point(10, 114)
         Me.lv.Name = "lv"
         Me.lv.Size = New System.Drawing.Size(440, 168)
         Me.lv.TabIndex = 12
         Me.lv.UseCompatibleStateImageBehavior = False
         '
-        'tb3
-        '
-        Me.tb3.Location = New System.Drawing.Point(318, 38)
-        Me.tb3.Name = "tb3"
-        Me.tb3.Size = New System.Drawing.Size(62, 20)
-        Me.tb3.TabIndex = 34
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(246, 42)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(29, 13)
-        Me.Label1.TabIndex = 33
-        Me.Label1.Text = "Num"
-        '
         'FrmHutang
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(465, 336)
+        Me.ClientSize = New System.Drawing.Size(465, 308)
         Me.Controls.Add(Me.pb)
         Me.Controls.Add(Me.lbrec)
         Me.Controls.Add(Me.lv)
         Me.Controls.Add(Me.Panel1)
         Me.Margin = New System.Windows.Forms.Padding(2)
+        Me.MaximizeBox = False
         Me.Name = "FrmHutang"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FrmHutang"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
