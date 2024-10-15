@@ -215,15 +215,15 @@ Public Class tempdt
             If ndKey = "splr" Then csql = "select IdSuplier,NamaSuplier,Alamat,NoTelp from TokoMaster.dbo.Supplier order by IdSuplier"
 
             If ndKey = "gdd" Then csql = "select IdGudang,NamaGudang,Alamat from TokoMaster.dbo.Gudang order by IdGudang"
-            If ndKey = "gdh" Then csql = "select IdGudang,IdTransBeli,TglMasuk,Stok,TglExp from TokoMaster.dbo.GudangHrg order by IdGudang"
-            If ndKey = "gds" Then csql = "select IdGudang,Idbarang,b.NamaBarang,Stok from TokoMaster..GudangStok a
-	                                            outer apply (select NamaBarang from TokoMaster..Barang where IdBarang=a.IdBarang) b ORDER BY IdGudang"
+            If ndKey = "gdh" Then csql = "select IdGudang,TglMasuk,TAG,Harga from TokoMaster.dbo.GudangHrg order by IdGudang"
+            If ndKey = "gds" Then csql = "select IdTrans,b.NamaBarang,Tanggal,Masuk,Keluar from TokoMaster..GudangStok a
+	                                            outer apply (select NamaBarang from TokoMaster..Barang where IdBarang=a.IdBarang) b "
 
             If ndKey = "pbl" Then csql = "select IdPembeli,NamaPembeli,Alamat from TokoMaster.dbo.Pembeli order by IdPembeli"
 
             If ndKey = "krw" Then csql = "select IdKaryawan,NamaKaryawan,Alamat,TAG,Akses from TokoMaster.dbo.Karyawan order by IdKaryawan"
 
-            If ndKey = "eks" Then csql = "select IdEKS,NamaEKS,Tujuan from TokoMaster.dbo.Ekspedisi order by IdEKS"
+            If ndKey = "eks" Then csql = "select IdEKS,NamaEKS,Jenis,Estimasi from TokoMaster.dbo.Ekspedisi order by IdEKS"
 
             If ndKey = "tgd" Then csql = "select TAG,KetTag from TokoMaster.dbo.TAG order by TAG"
             If ndKey = "tga" Then csql = "select Akses,AksesKet from TokoMaster.dbo.AksesTag order by Akses"
