@@ -122,6 +122,16 @@ Public Class FrmUtama
             .Show()
         End With
     End Sub
+
+    Private Sub ReturPenerimaanToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReturPenerimaanToolStripMenuItem.Click
+        Dim frmexplo As New FrmExplo
+        With frmexplo
+            .MdiParent = Me : noform = +1
+            .Text = "Retur Penerimaan " & noform
+            .Tag = "rp"
+            .Show()
+        End With
+    End Sub
 End Class
 
 'Public Class samakanjam
