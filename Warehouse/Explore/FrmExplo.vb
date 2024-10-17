@@ -67,6 +67,9 @@ Public Class FrmExplo
                 'ElseIf itm(0) = "byr" Then
                 'dttemp.PKey = tthn.Text : dttemp.SKey = itm(1)
                 'dttemp.Tamplidt(itm(0))
+            ElseIf itm(0) = "rb" Then
+                dttemp.PKey = tthn.Text : dttemp.SKey = itm(1)
+                dttemp.Tamplidt(itm(0))
             End If
         End If
         Me.ts1.Text = Me.tv.SelectedNode.Text
@@ -88,6 +91,9 @@ Public Class FrmExplo
             dttemp.BukaForm(Me.Tag)
         ElseIf Me.Tag = "bpt" Then
             dttemp.ndKey = "bpt"
+            dttemp.BukaForm(Me.Tag)
+        ElseIf Me.Tag = "rb" Then
+            dttemp.ndKey = "rb"
             dttemp.BukaForm(Me.Tag)
         End If
     End Sub
@@ -154,6 +160,7 @@ Public Class FrmExplo
         If Me.Tag = "jl" Then dttemp.MenuPenjualan(tthn.Text)
         If Me.Tag = "bht" Then dttemp.MenuBayar(tthn.Text)
         If Me.Tag = "bpt" Then dttemp.MenuPiutang(tthn.Text)
+        If Me.Tag = "rb" Then dttemp.ReturBeli(tthn.Text)
     End Sub
 
 
@@ -312,6 +319,8 @@ Public Class tempdt2
             csql = "SELECT IdBarang,NamaBarang,Satuan,Jumlah,Harga,Total,Diskon,HrgDis FROM TokoTrans.dbo.ft_PenjualanPblDet('" & PKey & "')"
         ElseIf ttag = "bpt" Then
             csql = "SELECT idPiutang,Tanggal,Uraian,Debet,Kredit,Saldo FROM TokoTrans.dbo.ft_BayarPiutangPblDet('" & PKey & "')"
+        ElseIf ttag = "rb" Then
+            csql = "SELECT IdTransBeli,NamaKaryawan,NamaBarang,Jumlah,Satuan FROM TokoTrans.dbo.ft_ReturBeliDet('" & PKey & "')"
         End If
 
         lvListAutoMain(lv2, pb, csql)
@@ -326,6 +335,8 @@ Public Class tempdt2
             csql = "select IdTransJual,IdEKS,IdPesanan,IdPembeli,IdKaryawan,Jumlah,Total,HrgDiskon,Bayar,HrgDiskon-bayar Piutang from TokoTrans.dbo.ft_PenjualanPbl('" & PKey & "','" & SKey & "')"
             'ElseIf ttag = "byr" Then
             'csql = "select idHutang,IDTransBeli,Tanggal,uraian,Debet,Kredit,KetPost from TokoTrans.dbo.ft_BayarHutangSpl('" & PKey & "','" & SKey & "')"
+        ElseIf ttag = "rb" Then
+            csql = "select idTransBeli,Tanggal,IdRetur,Idkaryawan,IdBarang,Keterangan from TokoTrans.dbo.ft_ReturBeli('" & PKey & "','" & SKey & "')"
         End If
         Select Case ttag
             Case "Pesanan Diterima"
@@ -333,8 +344,7 @@ Public Class tempdt2
             Case "Sedang Proses"
                 csql = "select IdPesanan,TglInput,IdPembeli,IdBarang,Status from TokoTrans.dbo.ft_TerimaPesananMenu('" & PKey & "','" & ttag & "')"
             Case "Dikirim"
-                csql = "select IdPesanan,TglInput,IdPembeli,IdBarang,Status from TokoTrans.dbo.ft_TerimaPesananMenu('" & PKey & "','" & ttag & "')"
-
+                csql = "select IdPesanan,TglInput,IdPembeli,IdBarang,Status from TokoTrans.dbo.ft_Te rimaPesananMenu('" & PKey & "','" & ttag & "')"
         End Select
         Me.lv1.Tag = ttag
         lvListAutoMain(lv1, pb, csql)
@@ -450,6 +460,24 @@ Public Class tempdt2
             db = Nothing
         End Try
     End Sub
+    Public Sub ReturBeli(ByVal thn As Integer)
+        Dim db As New msaConn
+        Try
+            csql = "select IdKaryawan,NamaKaryawan from tokotrans.dbo.ft_ReturBeliMenu('" & thn & "')"
+            With tv
+                .Nodes.Clear()
+                troot = .Nodes.Add("rb", "Retur Beli " & thn.ToString)
+                For Each dt As DataRow In db.ExecQuery(csql).Rows
+                    troot1 = troot.Nodes.Add("rb!" & dt(0), dt(1))
+                Next
+                troot.Expand()
+            End With
+        Catch ex As Exception
+            MsgBox(Err.Description, "cek err")
+        Finally
+            db = Nothing
+        End Try
+    End Sub
 
     Public Sub dtMaster()
         Try
@@ -533,6 +561,10 @@ Public Class tempdt2
             Case "bpt"
                 If ndKey = "bpt" Then
                     FrmHutang.bukaform(FrmUtama, nPKey)
+                End If
+            Case "rb"
+                If ndKey = "rb" Then
+                    FrmReturBeli.bukaform(FrmUtama, nPKey)
                 End If
         End Select
     End Sub

@@ -49,3 +49,4 @@ C:\Users\user\Downloads\Compressed\Warehouse\Warehouse\obj\x86\Debug\Warehouse.x
 C:\Users\user\Downloads\Compressed\Warehouse\Warehouse\obj\x86\Debug\Warehouse.pdb
 D:\auf\VisualBasic\Warehouse\Warehouse\obj\x86\Debug\Warehouse.FrmHutang.resources
 C:\Users\user\Downloads\Compressed\Warehouse\Warehouse\obj\x86\Debug\Warehouse.FrmHutang.resources
+C:\Users\user\Downloads\Compressed\Warehouse\Warehouse\obj\x86\Debug\Warehouse.FrmReturBeli.resources

@@ -64,7 +64,7 @@ Public Class FrmHutang
             If sender.Equals(cb1) Then tb3.Focus() : SendKeys.Send("{end}")
             If sender.Equals(tb3) Then
                 'simpan
-                dtpro("sim")
+                'dtpro("sim")
             End If
         ElseIf e.KeyChar = Chr(27) Then
             If sender.Equals(tb1) Then Me.Close()

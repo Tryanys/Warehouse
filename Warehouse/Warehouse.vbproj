@@ -160,6 +160,12 @@
     <Compile Include="Form\FrmMaster4.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\FrmReturBeli.Designer.vb">
+      <DependentUpon>FrmReturBeli.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmReturBeli.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\FrmTerima.Designer.vb">
       <DependentUpon>FrmTerima.vb</DependentUpon>
     </Compile>
@@ -238,6 +244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmMaster4.resx">
       <DependentUpon>FrmMaster4.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmReturBeli.resx">
+      <DependentUpon>FrmReturBeli.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmTerima.resx">
       <DependentUpon>FrmTerima.vb</DependentUpon>
