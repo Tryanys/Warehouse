@@ -7,6 +7,7 @@
         mform = nForm : mform.Enabled = False
         'tb1.Text = id
         tb1.Focus() : SendKeys.Send("{end}")
+        If dtempt.ndKey = "rb" Then tb9.Enabled = False : tb10.Enabled = False
     End Sub
     Private Sub tampdt()
         With dtempt
