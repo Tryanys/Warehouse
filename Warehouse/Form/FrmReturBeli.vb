@@ -8,6 +8,9 @@
         'tb1.Text = id
         tb1.Focus() : SendKeys.Send("{end}")
         If dtempt.ndKey = "rb" Then tb9.Enabled = False : tb10.Enabled = False
+        If dtempt.ndKey = "rp" Then
+            Label1.Text = "ID Retur"
+        End If
     End Sub
     Private Sub tampdt()
         With dtempt

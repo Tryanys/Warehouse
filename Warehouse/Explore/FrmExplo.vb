@@ -73,6 +73,9 @@ Public Class FrmExplo
             ElseIf itm(0) = "rp" Then
                 dttemp.PKey = tthn.Text : dttemp.SKey = itm(1)
                 dttemp.Tamplidt(itm(0))
+            ElseIf itm(0) = "rj" Then
+                dttemp.PKey = tthn.Text : dttemp.SKey = itm(1)
+                dttemp.Tamplidt(itm(0))
             End If
         End If
         Me.ts1.Text = Me.tv.SelectedNode.Text
@@ -168,6 +171,7 @@ Public Class FrmExplo
         If Me.Tag = "bpt" Then dttemp.MenuPiutang(tthn.Text)
         If Me.Tag = "rb" Then dttemp.ReturBeli(tthn.Text)
         If Me.Tag = "rp" Then dttemp.ReturPenerimaan(tthn.Text)
+        If Me.Tag = "rj" Then dttemp.ReturJual(tthn.Text)
     End Sub
 
 
@@ -330,6 +334,8 @@ Public Class tempdt2
             csql = "SELECT IdTransBeli,NamaKaryawan,NamaBarang,Jumlah,Satuan FROM TokoTrans.dbo.ft_ReturBeliDet('" & PKey & "')"
         ElseIf ttag = "rp" Then
             csql = "SELECT IdRetur,NamaKaryawan,NamaBarang,Jumlah,Satuan FROM TokoTrans.dbo.ft_ReturPenerimaanDet('" & PKey & "')"
+        ElseIf ttag = "rj" Then
+            csql = "SELECT IdTransJual,IdBarang,NamaBarang,Jumlah,Harga,Diskon,Satuan FROM TokoTrans.dbo.ft_ReturJualDet('" & PKey & "')"
         End If
 
         lvListAutoMain(lv2, pb, csql)
@@ -348,6 +354,8 @@ Public Class tempdt2
             csql = "select idTransBeli,Tanggal,IdRetur,Idkaryawan,IdBarang,Keterangan from TokoTrans.dbo.ft_ReturBeli('" & PKey & "','" & SKey & "')"
         ElseIf ttag = "rp" Then
             csql = "select idRetur,Tanggal,IdPen,Idkaryawan,IdBarang,Keterangan from TokoTrans.dbo.ft_ReturPenerimaan('" & PKey & "','" & SKey & "')"
+        ElseIf ttag = "rj" Then
+            csql = "select idReturJual,IdKaryawan,IdBarang,Tanggal,Keterangan from TokoTrans.dbo.ft_ReturJual('" & PKey & "','" & SKey & "')"
         End If
         Select Case ttag
             Case "Pesanan Diterima"
@@ -489,11 +497,29 @@ Public Class tempdt2
             db = Nothing
         End Try
     End Sub
+    Public Sub ReturJual(ByVal thn As Integer)
+        Dim db As New msaConn
+        Try
+            csql = "select IdKaryawan,NamaKaryawan from tokotrans.dbo.ft_ReturBeliMenu('" & thn & "')"
+            With tv
+                .Nodes.Clear()
+                troot = .Nodes.Add("rj", "Retur Jual " & thn.ToString)
+                For Each dt As DataRow In db.ExecQuery(csql).Rows
+                    troot1 = troot.Nodes.Add("rj!" & dt(0), dt(1))
+                Next
+                troot.Expand()
+            End With
+        Catch ex As Exception
+            MsgBox(Err.Description, "cek err")
+        Finally
+            db = Nothing
+        End Try
+    End Sub
 
     Public Sub ReturPenerimaan(ByVal thn As Integer)
         Dim db As New msaConn
         Try
-            csql = "select IdKaryawan,NamaKaryawan from tokotrans.dbo.ft_ReturPenerimaanMenu('" & thn & "')"
+            csql = "select IdKaryawan,NamaKaryawan from tokotrans.dbo.ft_ReturBeliMenu('" & thn & "')"
             With tv
                 .Nodes.Clear()
                 troot = .Nodes.Add("rp", "Retur Penerimaan " & thn.ToString)
