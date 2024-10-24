@@ -7,7 +7,7 @@
         mform = nForm : mform.Enabled = False
         'tb1.Text = id
         tb1.Focus() : SendKeys.Send("{end}")
-        If dtempt.ndKey = "rb" Then tb9.Enabled = False : tb10.Enabled = False
+        If dtempt.ndKey = "rb" Or dtempt.ndKey = "rj" Then tb9.Enabled = False : tb10.Enabled = False
         If dtempt.ndKey = "rp" Then
             Label1.Text = "ID Retur"
         End If
@@ -16,6 +16,7 @@
         With dtempt
             If .ndKey = "rb" Then csql = "select IdKaryawan,TglInput,IdRetur,Tanggal,Keterangan from TokoTrans.dbo.ReturBeli order by IdKaryawan"
             If .ndKey = "rp" Then csql = "select IdKaryawan,TglInput,IdPen,Tanggal,Keterangan from TokoTrans.dbo.ReturPen order by IdKaryawan"
+            If .ndKey = "rp" Then csql = "select IdKaryawan,TglInput,IdPen,Tanggal,Keterangan from TokoTrans.dbo.ReturJual order by IdKaryawan"
             lvListAuto(Me.lv, Me.pb, csql)
             lbrec.Text = "Rec. " & Me.lv.Items.Count
             Me.lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
@@ -112,6 +113,18 @@
                         MsgBox(dt("Ket"), vbInformation, "Cek Err")
                     Next
                     csql = "exec TokoTrans.dbo.sp_ReturTerimaDet_Pro '" & mpro & "','','" & tb1.Text & "','" & tb4.Text & "','" & tb7.Text & "','" & tb9.Text & "','" & tb10.Text & "'"
+                    For Each dt As DataRow In cpro.ExecQuery(csql).Rows
+                        MsgBox(dt("Ket"), vbInformation, "Cek Err")
+                    Next
+                    dtpro("bar")
+                End If
+            ElseIf dtempt.ndKey = "rj" Then
+                If mpro = "sim" Or mpro = "hap" Then
+                    csql = "exec TokoTrans.dbo.sp_ReturJual_Pro '" & mpro & "','" & tb2.Text & "','','" & dtp1.Text & "','" & tb8.Text & "'"
+                    For Each dt As DataRow In cpro.ExecQuery(csql).Rows
+                        MsgBox(dt("Ket"), vbInformation, "Cek Err")
+                    Next
+                    csql = "exec TokoTrans.dbo.sp_ReturJualDet_Pro '" & mpro & "','','" & tb1.Text & "','" & tb4.Text & "','" & tb7.Text & "','" & tb9.Text & "','" & tb10.Text & "'"
                     For Each dt As DataRow In cpro.ExecQuery(csql).Rows
                         MsgBox(dt("Ket"), vbInformation, "Cek Err")
                     Next

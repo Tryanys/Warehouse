@@ -104,6 +104,9 @@ Public Class FrmExplo
         ElseIf Me.Tag = "rp" Then
             dttemp.ndKey = "rp"
             dttemp.BukaForm(Me.Tag)
+        ElseIf Me.Tag = "rj" Then
+            dttemp.ndKey = "rj"
+            dttemp.BukaForm(Me.Tag)
         End If
     End Sub
     Private Sub FrmExplo_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
@@ -624,6 +627,10 @@ Public Class tempdt2
                 End If
             Case "rp"
                 If ndKey = "rp" Then
+                    FrmReturBeli.bukaform(FrmUtama, nPKey)
+                End If
+            Case "rj"
+                If ndKey = "rj" Then
                     FrmReturBeli.bukaform(FrmUtama, nPKey)
                 End If
         End Select
