@@ -107,6 +107,9 @@ Public Class FrmExplo
         ElseIf Me.Tag = "rj" Then
             dttemp.ndKey = "rj"
             dttemp.BukaForm(Me.Tag)
+        ElseIf Me.Tag = "rj" Then
+            dttemp.ndKey = "rj"
+            dttemp.BukaForm(Me.Tag)
         End If
     End Sub
     Private Sub FrmExplo_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
