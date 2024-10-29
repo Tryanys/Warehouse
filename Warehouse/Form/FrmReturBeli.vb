@@ -12,6 +12,9 @@
             Label1.Text = "ID Retur"
         End If
         If dtempt.ndKey = "rj" Then
+            Label1.Text = "ID Trans Jual"
+        End If
+        If dtempt.ndKey = "rjk" Then
             Label1.Text = "ID Retur Jual"
         End If
     End Sub
@@ -20,7 +23,8 @@
             If .ndKey = "rb" Then csql = "select IdKaryawan,TglInput,IdRetur,Tanggal,Keterangan from TokoTrans.dbo.ReturBeli order by IdKaryawan"
             If .ndKey = "rp" Then csql = "select IdKaryawan,TglInput,IdPen,Tanggal,Keterangan from TokoTrans.dbo.ReturPen order by IdKaryawan"
             If .ndKey = "rj" Then csql = "select IdReturJual,IdKaryawan,TglInput,Tanggal,Keterangan from TokoTrans.dbo.ReturJual order by IdKaryawan"
-            If .ndKey = "rp" Then csql = "select IdKaryawan,TglInput,IdPen,Tanggal,Keterangan from TokoTrans.dbo.ReturJual order by IdKaryawan"
+            If .ndKey = "rp" Then csql = "select IdKaryawan,TglInput,IdReturJual,Tanggal,Keterangan from TokoTrans.dbo.ReturJual order by IdKaryawan"
+            If .ndKey = "rjk" Then csql = "select IdKaryawan,TglInput,IdRetur,Tanggal,Keterangan from TokoTrans.dbo.ReturJualKirim order by IdKaryawan"
             lvListAuto(Me.lv, Me.pb, csql)
             lbrec.Text = "Rec. " & Me.lv.Items.Count
             Me.lv.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
@@ -128,7 +132,19 @@
                     For Each dt As DataRow In cpro.ExecQuery(csql).Rows
                         MsgBox(dt("Ket"), vbInformation, "Cek Err")
                     Next
-                    csql = "exec TokoTrans.dbo.sp_ReturJualDet_Pro '" & mpro & "','','" & tb1.Text & "','" & tb4.Text & "','" & tb7.Text & "','" & tb9.Text & "','" & tb10.Text & "'"
+                    csql = "exec TokoTrans.dbo.sp_ReturJualDet_Pro '" & mpro & "','" & tb1.Text & "','" & tb4.Text & "','" & tb7.Text & "'"
+                    For Each dt As DataRow In cpro.ExecQuery(csql).Rows
+                        MsgBox(dt("Ket"), vbInformation, "Cek Err")
+                    Next
+                    dtpro("bar")
+                End If
+            ElseIf dtempt.ndKey = "rjk" Then
+                If mpro = "sim" Or mpro = "hap" Then
+                    csql = "exec TokoTrans.dbo.sp_ReturJualKirim_Pro '" & mpro & "','" & tb2.Text & "','','" & dtp1.Text & "','" & tb8.Text & "'"
+                    For Each dt As DataRow In cpro.ExecQuery(csql).Rows
+                        MsgBox(dt("Ket"), vbInformation, "Cek Err")
+                    Next
+                    csql = "exec TokoTrans.dbo.sp_ReturJualKirimDet_Pro '" & mpro & "','','" & tb1.Text & "','" & tb4.Text & "','" & tb7.Text & "','" & tb9.Text & "','" & tb10.Text & "'"
                     For Each dt As DataRow In cpro.ExecQuery(csql).Rows
                         MsgBox(dt("Ket"), vbInformation, "Cek Err")
                     Next

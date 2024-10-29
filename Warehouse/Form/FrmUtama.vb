@@ -142,6 +142,16 @@ Public Class FrmUtama
             .Show()
         End With
     End Sub
+
+    Private Sub ReturJualKirimToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReturJualKirimToolStripMenuItem.Click
+        Dim frmexplo As New FrmExplo
+        With frmexplo
+            .MdiParent = Me : noform = +1
+            .Text = "Retur Jual Kirim " & noform
+            .Tag = "rjk"
+            .Show()
+        End With
+    End Sub
 End Class
 
 'Public Class samakanjam

@@ -76,6 +76,9 @@ Public Class FrmExplo
             ElseIf itm(0) = "rj" Then
                 dttemp.PKey = tthn.Text : dttemp.SKey = itm(1)
                 dttemp.Tamplidt(itm(0))
+            ElseIf itm(0) = "rjk" Then
+                dttemp.PKey = tthn.Text : dttemp.SKey = itm(1)
+                dttemp.Tamplidt(itm(0))
             End If
         End If
         Me.ts1.Text = Me.tv.SelectedNode.Text
@@ -107,9 +110,9 @@ Public Class FrmExplo
         ElseIf Me.Tag = "rj" Then
             dttemp.ndKey = "rj"
             dttemp.BukaForm(Me.Tag)
-        ElseIf Me.Tag = "rj" Then
-            dttemp.ndKey = "rj"
-
+        ElseIf Me.Tag = "rjk" Then
+            dttemp.ndKey = "rjk"
+            dttemp.BukaForm(Me.Tag)
         End If
     End Sub
     Private Sub FrmExplo_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
@@ -178,6 +181,7 @@ Public Class FrmExplo
         If Me.Tag = "rb" Then dttemp.ReturBeli(tthn.Text)
         If Me.Tag = "rp" Then dttemp.ReturPenerimaan(tthn.Text)
         If Me.Tag = "rj" Then dttemp.ReturJual(tthn.Text)
+        If Me.Tag = "rjk" Then dttemp.ReturJualKirim(tthn.Text)
     End Sub
 
 
@@ -342,6 +346,8 @@ Public Class tempdt2
             csql = "SELECT IdRetur,NamaKaryawan,NamaBarang,Jumlah,Satuan FROM TokoTrans.dbo.ft_ReturPenerimaanDet('" & PKey & "')"
         ElseIf ttag = "rj" Then
             csql = "SELECT IdTransJual,IdBarang,NamaBarang,Jumlah,Harga,Diskon,Satuan FROM TokoTrans.dbo.ft_ReturJualDet('" & PKey & "')"
+        ElseIf ttag = "rjk" Then
+            csql = "SELECT IdreturJual,TglInput,NamaBarang,Jumlah,Harga,Diskon,Satuan FROM TokoTrans.dbo.ft_ReturJualKirimDet('" & PKey & "')"
         End If
 
         lvListAutoMain(lv2, pb, csql)
@@ -362,6 +368,8 @@ Public Class tempdt2
             csql = "select idRetur,Tanggal,IdPen,Idkaryawan,IdBarang,Keterangan from TokoTrans.dbo.ft_ReturPenerimaan('" & PKey & "','" & SKey & "')"
         ElseIf ttag = "rj" Then
             csql = "select idReturJual,IdKaryawan,IdBarang,Tanggal,Keterangan from TokoTrans.dbo.ft_ReturJual('" & PKey & "','" & SKey & "')"
+        ElseIf ttag = "rjk" Then
+            csql = "select IdRetur,Idkaryawan,IdBarang,Tanggal,Keterangan from TokoTrans.dbo.ft_ReturJualKirim('" & PKey & "','" & SKey & "')"
         End If
         Select Case ttag
             Case "Pesanan Diterima"
@@ -521,6 +529,24 @@ Public Class tempdt2
             db = Nothing
         End Try
     End Sub
+    Public Sub ReturJualKirim(ByVal thn As Integer)
+        Dim db As New msaConn
+        Try
+            csql = "select IdKaryawan,NamaKaryawan from tokotrans.dbo.ft_ReturBeliMenu('" & thn & "')"
+            With tv
+                .Nodes.Clear()
+                troot = .Nodes.Add("rjk", "Retur Jual Kirim " & thn.ToString)
+                For Each dt As DataRow In db.ExecQuery(csql).Rows
+                    troot1 = troot.Nodes.Add("rjk!" & dt(0), dt(1))
+                Next
+                troot.Expand()
+            End With
+        Catch ex As Exception
+            MsgBox(Err.Description, "cek err")
+        Finally
+            db = Nothing
+        End Try
+    End Sub
 
     Public Sub ReturPenerimaan(ByVal thn As Integer)
         Dim db As New msaConn
@@ -634,6 +660,10 @@ Public Class tempdt2
                 End If
             Case "rj"
                 If ndKey = "rj" Then
+                    FrmReturBeli.bukaform(FrmUtama, nPKey)
+                End If
+            Case "rjk"
+                If ndKey = "rjk" Then
                     FrmReturBeli.bukaform(FrmUtama, nPKey)
                 End If
         End Select
