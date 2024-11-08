@@ -51,6 +51,9 @@ Public Class FrmExplo2
             ElseIf dttemp.ndKey = "tgd" Or dttemp.ndKey = "tga" Then
                 dttemp.PKey = lvi.Text
                 dttemp.BukaForm(Me.Tag)
+            ElseIf dttemp.ndKey = "krw" Then
+                dttemp.PKey = lvi.Text
+                dttemp.BukaForm(Me.Tag)
             End If
 
         End With
