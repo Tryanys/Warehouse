@@ -1,4 +1,7 @@
-﻿Public Class FrmMaster2
+﻿Imports System.Data.SqlClient
+Imports System.IO
+
+Public Class FrmMaster2
     Dim WithEvents dttemp As New tempdt
     Dim WithEvents cpro As New msaConn
     Private Sub tampdt()
@@ -89,6 +92,7 @@
         datatable = Nothing
     End Sub
     Private Sub tb1_TextChanged(sender As Object, e As EventArgs) Handles tb1.TextChanged
+        Dim img() As Byte
         Try
 
             tb2.Text = ""
@@ -98,7 +102,7 @@
             cb2.Text = ""
             cb3.Text = ""
             If dttemp.ndKey = "krw" Then
-                csql = "Select a.NamaKaryawan, b.Keterangan, a.Alamat, a.NoTelp, a.TAG, a.Akses from TokoMaster..Karyawan a inner join TokoMaster..WILKEC b ON a.KecID = b.kecID where IdKaryawan ='" & tb1.Text & "'"
+                csql = "Select a.NamaKaryawan, b.Keterangan, a.Alamat, a.NoTelp, a.TAG, a.Akses, a.foto  from TokoMaster..Karyawan a inner join TokoMaster..WILKEC b ON a.KecID = b.kecID where IdKaryawan ='" & tb1.Text & "'"
             End If
             If tb1.Text = "" Then Exit Sub
             For Each dt As DataRow In cpro.ExecQuery(csql).Rows
@@ -108,11 +112,46 @@
                 tb4.Text = dt(3)
                 cb2.Text = dt(4)
                 cb3.Text = dt(5)
+                img = dt(6)
+                Dim ms As New MemoryStream(img)
+                pt.Image = Image.FromStream(MS)
             Next
         Catch ex As Exception
             MsgBox(Err.Description, vbInformation, "Cek err")
         End Try
     End Sub
+
+    'Private Sub BTN_SHOW_Click(sender As Object, e As EventArgs) Handles BTN_SHOW.Click
+
+    '    Dim command As New SqlCommand("select * from Table_Images where id = @id", connection)
+    '    command.Parameters.Add("@id", SqlDbType.VarChar).Value = TextBoxID.Text
+
+    '    Dim table As New DataTable()
+
+    '    Dim adapter As New SqlDataAdapter(command)
+
+    '    adapter.Fill(table)
+
+    '    If table.Rows.Count() <= 0 Then
+
+    '        MessageBox.Show("No Image For This Id")
+    '    Else
+
+    '        TextBoxID.Text = table.Rows(0)(0).ToString()
+    '        TextBoxName.Text = table.Rows(0)(1).ToString()
+    '        TextBoxDesc.Text = table.Rows(0)(2).ToString()
+
+    '        Dim img() As Byte
+
+    '        img = table.Rows(0)(3)
+
+    '        Dim ms As New MemoryStream(img)
+
+    '        PictureBox1.Image = Image.FromStream(ms)
+
+    '    End If
+
+    'End Sub
 
     Private Sub FrmMaster2_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tb1.KeyPress, tb2.KeyPress, cb1.KeyPress, tb3.KeyPress, tb4.KeyPress, cb2.KeyPress, cb3.KeyPress
         If e.KeyChar = Chr(13) Then
@@ -171,5 +210,9 @@
         Catch ex As Exception
             MsgBox(Err.Description, vbInformation, "Cek err")
         End Try
+    End Sub
+
+    Private Sub pt_Click(sender As Object, e As EventArgs) Handles pt.Click
+
     End Sub
 End Class
