@@ -96,8 +96,8 @@ Public Class FrmMaster2
         Try
 
             tb2.Text = ""
-            tb3.Text = ""
             tb4.Text = ""
+            tb5.Text = ""
             cb1.Text = ""
             cb2.Text = ""
             cb3.Text = ""
@@ -108,13 +108,13 @@ Public Class FrmMaster2
             For Each dt As DataRow In cpro.ExecQuery(csql).Rows
                 tb2.Text = dt(0)
                 cb1.Text = dt(1)
-                tb3.Text = dt(2)
-                tb4.Text = dt(3)
+                tb4.Text = dt(2)
+                tb5.Text = dt(3)
                 cb2.Text = dt(4)
                 cb3.Text = dt(5)
                 img = dt(6)
                 Dim ms As New MemoryStream(img)
-                pt.Image = Image.FromStream(MS)
+                pt.Image = Image.FromStream(ms)
             Next
         Catch ex As Exception
             MsgBox(Err.Description, vbInformation, "Cek err")
@@ -153,13 +153,13 @@ Public Class FrmMaster2
 
     'End Sub
 
-    Private Sub FrmMaster2_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tb1.KeyPress, tb2.KeyPress, cb1.KeyPress, tb3.KeyPress, tb4.KeyPress, cb2.KeyPress, cb3.KeyPress
+    Private Sub FrmMaster2_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tb1.KeyPress, tb2.KeyPress, cb1.KeyPress, tb4.KeyPress, tb5.KeyPress, cb2.KeyPress, cb3.KeyPress
         If e.KeyChar = Chr(13) Then
             If sender.Equals(tb1) Then tb2.Focus() : SendKeys.Send("{end}")
             If sender.Equals(tb2) Then cb1.Focus() : cb1.DroppedDown = True
-            If sender.Equals(cb1) Then tb3.Focus() : SendKeys.Send("{end}")
-            If sender.Equals(tb3) Then tb4.Focus() : SendKeys.Send("{end}")
-            If sender.Equals(tb4) Then cb2.Focus() : cb2.DroppedDown = True
+            If sender.Equals(cb1) Then tb4.Focus() : SendKeys.Send("{end}")
+            If sender.Equals(tb4) Then tb5.Focus() : SendKeys.Send("{end}")
+            If sender.Equals(tb5) Then cb2.Focus() : cb2.DroppedDown = True
             If sender.Equals(cb2) Then cb3.Focus() : cb3.DroppedDown = True
             If sender.Equals(cb3) Then
                 'simpan
@@ -169,15 +169,15 @@ Public Class FrmMaster2
             If sender.Equals(tb1) Then Me.Close()
             If sender.Equals(tb2) Then tb1.Focus() : SendKeys.Send("{end}")
             If sender.Equals(cb1) Then tb2.Focus() : SendKeys.Send("{end}")
-            If sender.Equals(tb3) Then cb1.Focus() : cb1.DroppedDown = True
-            If sender.Equals(tb4) Then tb3.Focus() : SendKeys.Send("{end}")
-            If sender.Equals(cb2) Then tb4.Focus() : SendKeys.Send("{end}")
+            If sender.Equals(tb4) Then cb1.Focus() : cb1.DroppedDown = True
+            If sender.Equals(tb5) Then tb4.Focus() : SendKeys.Send("{end}")
+            If sender.Equals(cb2) Then tb5.Focus() : SendKeys.Send("{end}")
             If sender.Equals(cb3) Then cb2.Focus() : cb2.DroppedDown = True
         End If
         e.KeyChar = HurufBesar(e.KeyChar)
     End Sub
 
-    Private Sub tb4_KeyDown(sender As Object, e As KeyEventArgs) Handles tb1.KeyDown, tb2.KeyDown, cb1.KeyDown, tb3.KeyDown, cb2.KeyDown, tb4.KeyDown, cb3.KeyDown
+    Private Sub tb4_KeyDown(sender As Object, e As KeyEventArgs) Handles tb1.KeyDown, tb2.KeyDown, cb1.KeyDown, tb4.KeyDown, cb2.KeyDown, tb5.KeyDown, cb3.KeyDown
         If e.Control = True And (e.KeyCode = Asc("S") Or e.KeyCode = Asc("s")) Then
             dtpro("sim")
         ElseIf e.Control = True And (e.KeyCode = Asc("D") Or e.KeyCode = Asc("d")) Then
@@ -190,8 +190,10 @@ Public Class FrmMaster2
     Private Sub dtpro(ByVal mpro As String)
         Try
             If mpro = "sim" Or mpro = "hap" Then
-
-                csql = "exec TokoMaster.dbo.sp_Master#3Pro '" & dttemp.ndKey & "','" & mpro & "','" & tb1.Text & "','" & cb1.Text & "','" & tb2.Text & "','" & tb3.Text & "','" & tb4.Text & "','" & cb2.Text & "','" & cb3.Text & "'"
+                Dim fotoPath As String = pt.Text
+                Dim fotoBytes() As Byte = File.ReadAllBytes(fotoPath)
+                Dim csql As String
+                csql = "exec TokoMaster.dbo.sp_Master#3Pro '" & dttemp.ndKey & "','" & mpro & "','" & tb1.Text & "','" & cb1.Text & "','" & tb2.Text & "','" & tb4.Text & "','" & tb5.Text & "','" & cb2.Text & "','" & cb3.Text & "','" & pt.Text & "'"
                 For Each dt As DataRow In cpro.ExecQuery(csql).Rows
                     MsgBox(dt("Ket"), vbInformation, "Cek Err")
                 Next
@@ -199,10 +201,10 @@ Public Class FrmMaster2
             ElseIf mpro = "bar" Then
                 tb1.Text = ""
                 tb2.Text = ""
-                tb3.Text = ""
+                tb4.Text = ""
                 cb1.Text = ""
                 cb2.Text = ""
-                tb4.Text = ""
+                tb5.Text = ""
                 cb3.Text = ""
                 tb1.Focus()
                 tampdt()
@@ -215,4 +217,19 @@ Public Class FrmMaster2
     Private Sub pt_Click(sender As Object, e As EventArgs) Handles pt.Click
 
     End Sub
+
+    Private Sub Browse_Click(sender As Object, e As EventArgs) Handles Browse.Click
+        Dim ofd As New OpenFileDialog
+        ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp"
+        ofd.Title = "Pilih Gambar"
+
+        If ofd.ShowDialog() = DialogResult.OK Then
+            Dim imgPath As String = ofd.FileName
+            Dim img As Image = Image.FromFile(imgPath)
+            pt.Image = img
+        End If
+
+        ofd.Dispose()
+    End Sub
+
 End Class
