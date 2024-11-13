@@ -1,10 +1,21 @@
-﻿Module ModMain
+﻿Imports System.Data.SqlClient
+Imports System.IO
+
+Module ModMain
     Public csql As String, csql1 As String, csql2 As String, itm() As String
     Public crPro As Integer = 80, IMGPath As String, DOKPath As String, sqllogin As Integer = 30, sqlDatafill As Integer = 30
     Public pHostNM As String = "", pIPLoc As String = "", pMac As String = "", jmlkolom As Integer = 0, LvKolom As String = String.Empty
+    Public NamIP As String, DBName As String
+    Public CUser As String, CPass As String
 
     Public nKey As String, nPKey As String, nSKey As String, nTkey As String
 
+    Public Sub FileDel(ByVal FullPathfile As String)
+        If FullPathfile = "" Then Exit Sub
+        If (System.IO.File.Exists(FullPathfile)) Then
+            My.Computer.FileSystem.DeleteFile(FullPathfile)
+        End If
+    End Sub
 
     Public Function HurufBesar(ByVal keyascii As String) As String
         HurufBesar = UCase(Chr(Asc(keyascii)))

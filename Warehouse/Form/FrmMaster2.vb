@@ -121,37 +121,143 @@ Public Class FrmMaster2
         End Try
     End Sub
 
-    'Private Sub BTN_SHOW_Click(sender As Object, e As EventArgs) Handles BTN_SHOW.Click
 
-    '    Dim command As New SqlCommand("select * from Table_Images where id = @id", connection)
-    '    command.Parameters.Add("@id", SqlDbType.VarChar).Value = TextBoxID.Text
+    'Private Sub btSim_Click(sender As Object, e As EventArgs) Handles btSimKIBA.Click, btSimSert.Click, btsimL.Click 'simpan foto semua tombol ini
+    '    If sender.Equals(btSimKIBA) Then 'SIMPAN FOTO
+    '        If lbPengguna.Text = "" Or lbObjekBar.Text = "" Then
+    '            MsgBox("Barang (Aset) ditemukan ", vbInformation, "Chek id")
+    '            Exit Sub
+    '        ElseIf picBox.Image Is Nothing Then
+    '            MsgBox("Image (Foto) tidak ditemukan..", vbInformation, "chek Gambar")
+    '            Exit Sub
+    '        ElseIf NewFileName = "" Then
+    '            MsgBox("Pembaharuan tidak ditemukan..", vbInformation, "chek Gambar")
+    '            Exit Sub
 
-    '    Dim table As New DataTable()
+    '        End If
 
-    '    Dim adapter As New SqlDataAdapter(command)
+    '        com = New ClassIMG
+    '        csql = "update asetIMG90.dbo.GambarKIBA set Gambar = @photo where KIBA = @noid"
+    '        If com.SimpanPhoto("kiba", IMGPath & "\" & NewFileName, KIBkd, csql) > 0 Then
+    '            lbFoto.Enabled = True
+    '            MsgBox("Foto berhasil disimpan", vbInformation)
 
-    '    adapter.Fill(table)
+    '            'update nmfile pada gambarkiba
+    '            csql = "update asetIMG90.dbo.gambarkiba set nmfile='" & NewFileName & "' where kiba='" & KIBdt & "'"
+    '            Me.tsLabel.Text = com.UpdatenmFile(csql)
+    '        Else
+    '            lbFoto.Enabled = False
+    '            MsgBox("Foto gagal disimpan", vbInformation)
+    '        End If
+    '        NewFileName = ""
+    '        com = Nothing
 
-    '    If table.Rows.Count() <= 0 Then
+    '    ElseIf sender.Equals(btSimSert) Then
+    '        If mOpenftCek = False Then
+    '            MsgBox("Informasi Barang (Aset) KIBA tidak ditemukan ", vbInformation, "Chek id")
+    '            Exit Sub
+    '        ElseIf picBoxSert.Image Is Nothing Then
+    '            MsgBox("Image (Foto) tidak ditemukan..", vbInformation, "chek Gambar")
+    '            Exit Sub
+    '        ElseIf NewFileName = "" Then
+    '            MsgBox("Image (Foto) tidak ditemukan..", vbInformation, "chek Gambar")
+    '            Exit Sub
+    '        End If
 
-    '        MessageBox.Show("No Image For This Id")
-    '    Else
+    '        com = New ClassIMG
+    '        csql = "update asetIMG90.dbo.GambarKIBASert set Gambar = @photo where KIBA = @noid"
+    '        If com.SimpanPhoto("kiba", IMGPath & "\" & NewFileName, KIBkd, csql) > 0 Then
+    '            lbFotoSert.Enabled = True
+    '            MsgBox("Foto berhasil disimpan", vbInformation)
 
-    '        TextBoxID.Text = table.Rows(0)(0).ToString()
-    '        TextBoxName.Text = table.Rows(0)(1).ToString()
-    '        TextBoxDesc.Text = table.Rows(0)(2).ToString()
+    '            'update nmfile pada gambarkiba
+    '            csql = "update asetIMG90.dbo.GambarKIBASert set nmfile='" & NewFileName & "' where kiba='" & KIBdt & "'"
+    '            Me.tsLabel.Text = com.UpdatenmFile(csql)
+    '        Else
+    '            lbFotoSert.Enabled = False
+    '            MsgBox("Foto gagal disimpan", vbInformation)
+    '        End If
+    '        NewFileName = ""
+    '        com = Nothing
 
-    '        Dim img() As Byte
+    '    ElseIf sender.Equals(btsimL) Then
+    '        If mOpenftCek = False Then
+    '            MsgBox("Informasi Lokasi MAP tidak ditemukan ", vbInformation, "Chek id")
+    '            Exit Sub
+    '        ElseIf PicBoxL.Image Is Nothing Then
+    '            MsgBox("Image (Foto) tidak ditemukan..", vbInformation, "chek Gambar")
+    '            Exit Sub
+    '        ElseIf NewFileName = "" Then
+    '            MsgBox("Image (Foto) tidak ditemukan..", vbInformation, "chek Gambar")
+    '            Exit Sub
+    '        End If
 
-    '        img = table.Rows(0)(3)
+    '        com = New ClassIMG
+    '        csql = "update asetIMG90.dbo.GambarLokasiMAP set Gambar = @photo where KIB = @noid"
+    '        If com.SimpanPhoto("kibl", IMGPath & "\" & NewFileName, KIBkd, csql) > 0 Then
+    '            lbFotoSert.Enabled = True
+    '            MsgBox("Foto berhasil disimpan", vbInformation)
 
-    '        Dim ms As New MemoryStream(img)
-
-    '        PictureBox1.Image = Image.FromStream(ms)
+    '            'update nmfile pada gambarkiba
+    '            csql = "update asetIMG90.dbo.GambarLokasiMAP set nmfile='" & NewFileName & "' where kib='" & KIBdt & "'"
+    '            Me.tsLabel.Text = com.UpdatenmFile(csql)
+    '        Else
+    '            lbFotoSert.Enabled = False
+    '            MsgBox("Foto gagal disimpan", vbInformation)
+    '        End If
+    '        NewFileName = ""
+    '        com = Nothing
 
     '    End If
-
     'End Sub
+
+
+    'PANGGIL FOTO (Download)
+    'Private Sub lbft_Click(sender As Object, e As EventArgs) Handles lbFoto.Click, lbFotoSert.Click
+    '    If sender.Equals(lbFoto) Then
+    '        Me.picBox.Image = Nothing
+    '        Application.DoEvents()
+
+    '        If Me.picBox.Image Is Nothing Then
+    '            csql1 = "select Gambar,nmFile from asetIMG90.dbo.gambarKIBA where KIBA = '" & KIBdt & "'"
+    '            csql2 = "select KIBA,Gambar from asetIMG90.dbo.gambarKIBA where KIBA = @noid"
+    '            'kirim untuk panggil foto
+    '            com = New ClassIMG
+    '            com.PanggilFoto("kiba", KIBdt, Me.picBox, csql1, csql2)
+    '            com = Nothing
+    '            Me.tsLabel.Text = "Memperbarui gambar"
+    '        End If
+
+    '    ElseIf sender.Equals(lbFotoSert) Then
+    '        Me.picBoxSert.Image = Nothing
+    '        Application.DoEvents()
+
+    '        If Me.picBoxSert.Image Is Nothing Then
+    '            csql1 = "select Gambar,nmFile from asetIMG90.dbo.gambarKIBASert where KIBA = '" & KIBdt & "'"
+    '            csql2 = "select KIBA,Gambar from asetIMG90.dbo.gambarKIBASert where KIBA = @noid"
+    '            'kirim untuk panggil foto
+    '            com = New ClassIMG
+    '            com.PanggilFoto("kiba", KIBdt, Me.picBoxSert, csql1, csql2)
+    '            com = Nothing
+    '            Me.tsLabel.Text = "Memperbarui gambar"
+    '        End If
+
+    '    End If
+    'End Sub
+    ''Tampilkan foto ke dalam picturebox
+
+    'Me.picBoxB.Image = Nothing
+    '        Application.DoEvents()
+
+    '        If Me.picBoxB.Image Is Nothing Then
+    '            csql1 = "select GambarB,nmFileB from asetIMG90.dbo.gambarKIBABatas where KIBA = '" & KIBdt & "'"
+    '            csql2 = "select KIBA,GambarB from asetIMG90.dbo.gambarKIBABatas where KIBA = @noid"
+    '            'kirim untuk panggil foto
+    '            com = New ClassIMG
+    '            com.PanggilFoto("kiba", KIBdt, Me.picBoxB, csql1, csql2)
+    '            com = Nothing
+    '            Me.tsLabel.Text = "Memperbarui gambar BARAT"
+    'End If
 
     Private Sub FrmMaster2_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tb1.KeyPress, tb2.KeyPress, cb1.KeyPress, tb4.KeyPress, tb5.KeyPress, cb2.KeyPress, cb3.KeyPress
         If e.KeyChar = Chr(13) Then
