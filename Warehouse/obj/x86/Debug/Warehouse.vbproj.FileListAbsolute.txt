@@ -51,3 +51,4 @@ D:\auf\VisualBasic\Warehouse\Warehouse\obj\x86\Debug\Warehouse.FrmHutang.resourc
 C:\Users\user\Downloads\Compressed\Warehouse\Warehouse\obj\x86\Debug\Warehouse.FrmHutang.resources
 C:\Users\user\Downloads\Compressed\Warehouse\Warehouse\obj\x86\Debug\Warehouse.FrmReturBeli.resources
 D:\auf\VisualBasic\Warehouse\Warehouse\obj\x86\Debug\Warehouse.FrmReturBeli.resources
+D:\auf\VisualBasic\Warehouse\Warehouse\bin\x86\Debug\QRCoder.dll

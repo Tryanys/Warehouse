@@ -7,6 +7,8 @@ Module ModMain
     Public pHostNM As String = "", pIPLoc As String = "", pMac As String = "", jmlkolom As Integer = 0, LvKolom As String = String.Empty
     Public NamIP As String, DBName As String
     Public CUser As String, CPass As String
+    Public nPath As String, nroot As String
+    Public NewFileName As String = ""
 
     Public nKey As String, nPKey As String, nSKey As String, nTkey As String
 

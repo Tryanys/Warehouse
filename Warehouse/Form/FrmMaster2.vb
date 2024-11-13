@@ -4,6 +4,8 @@ Imports System.IO
 Public Class FrmMaster2
     Dim WithEvents dttemp As New tempdt
     Dim WithEvents cpro As New msaConn
+    Dim com As ClassIMG
+    Dim FileName As String = ""
     Private Sub tampdt()
         With dttemp
             .lvTag = .ndKey
@@ -122,122 +124,48 @@ Public Class FrmMaster2
     End Sub
 
 
-    'Private Sub btSim_Click(sender As Object, e As EventArgs) Handles btSimKIBA.Click, btSimSert.Click, btsimL.Click 'simpan foto semua tombol ini
-    '    If sender.Equals(btSimKIBA) Then 'SIMPAN FOTO
-    '        If lbPengguna.Text = "" Or lbObjekBar.Text = "" Then
-    '            MsgBox("Barang (Aset) ditemukan ", vbInformation, "Chek id")
-    '            Exit Sub
-    '        ElseIf picBox.Image Is Nothing Then
-    '            MsgBox("Image (Foto) tidak ditemukan..", vbInformation, "chek Gambar")
-    '            Exit Sub
-    '        ElseIf NewFileName = "" Then
-    '            MsgBox("Pembaharuan tidak ditemukan..", vbInformation, "chek Gambar")
-    '            Exit Sub
-
-    '        End If
-
-    '        com = New ClassIMG
-    '        csql = "update asetIMG90.dbo.GambarKIBA set Gambar = @photo where KIBA = @noid"
-    '        If com.SimpanPhoto("kiba", IMGPath & "\" & NewFileName, KIBkd, csql) > 0 Then
-    '            lbFoto.Enabled = True
-    '            MsgBox("Foto berhasil disimpan", vbInformation)
-
-    '            'update nmfile pada gambarkiba
-    '            csql = "update asetIMG90.dbo.gambarkiba set nmfile='" & NewFileName & "' where kiba='" & KIBdt & "'"
-    '            Me.tsLabel.Text = com.UpdatenmFile(csql)
-    '        Else
-    '            lbFoto.Enabled = False
-    '            MsgBox("Foto gagal disimpan", vbInformation)
-    '        End If
-    '        NewFileName = ""
-    '        com = Nothing
-
-    '    ElseIf sender.Equals(btSimSert) Then
-    '        If mOpenftCek = False Then
-    '            MsgBox("Informasi Barang (Aset) KIBA tidak ditemukan ", vbInformation, "Chek id")
-    '            Exit Sub
-    '        ElseIf picBoxSert.Image Is Nothing Then
-    '            MsgBox("Image (Foto) tidak ditemukan..", vbInformation, "chek Gambar")
-    '            Exit Sub
-    '        ElseIf NewFileName = "" Then
-    '            MsgBox("Image (Foto) tidak ditemukan..", vbInformation, "chek Gambar")
-    '            Exit Sub
-    '        End If
-
-    '        com = New ClassIMG
-    '        csql = "update asetIMG90.dbo.GambarKIBASert set Gambar = @photo where KIBA = @noid"
-    '        If com.SimpanPhoto("kiba", IMGPath & "\" & NewFileName, KIBkd, csql) > 0 Then
-    '            lbFotoSert.Enabled = True
-    '            MsgBox("Foto berhasil disimpan", vbInformation)
-
-    '            'update nmfile pada gambarkiba
-    '            csql = "update asetIMG90.dbo.GambarKIBASert set nmfile='" & NewFileName & "' where kiba='" & KIBdt & "'"
-    '            Me.tsLabel.Text = com.UpdatenmFile(csql)
-    '        Else
-    '            lbFotoSert.Enabled = False
-    '            MsgBox("Foto gagal disimpan", vbInformation)
-    '        End If
-    '        NewFileName = ""
-    '        com = Nothing
-
-    '    ElseIf sender.Equals(btsimL) Then
-    '        If mOpenftCek = False Then
-    '            MsgBox("Informasi Lokasi MAP tidak ditemukan ", vbInformation, "Chek id")
-    '            Exit Sub
-    '        ElseIf PicBoxL.Image Is Nothing Then
-    '            MsgBox("Image (Foto) tidak ditemukan..", vbInformation, "chek Gambar")
-    '            Exit Sub
-    '        ElseIf NewFileName = "" Then
-    '            MsgBox("Image (Foto) tidak ditemukan..", vbInformation, "chek Gambar")
-    '            Exit Sub
-    '        End If
-
-    '        com = New ClassIMG
-    '        csql = "update asetIMG90.dbo.GambarLokasiMAP set Gambar = @photo where KIB = @noid"
-    '        If com.SimpanPhoto("kibl", IMGPath & "\" & NewFileName, KIBkd, csql) > 0 Then
-    '            lbFotoSert.Enabled = True
-    '            MsgBox("Foto berhasil disimpan", vbInformation)
-
-    '            'update nmfile pada gambarkiba
-    '            csql = "update asetIMG90.dbo.GambarLokasiMAP set nmfile='" & NewFileName & "' where kib='" & KIBdt & "'"
-    '            Me.tsLabel.Text = com.UpdatenmFile(csql)
-    '        Else
-    '            lbFotoSert.Enabled = False
-    '            MsgBox("Foto gagal disimpan", vbInformation)
-    '        End If
-    '        NewFileName = ""
-    '        com = Nothing
+    'Private Sub btSim_Click(sender As Object, e As EventArgs) Handles btSimKIBA.Click 'simpan foto semua tombol ini
+    '    Dim nmFile As String = "", nmFullFile As String = "", NewFileName As String = ""
+    '    'SIMPAN FOTO
+    '    If pt.Image Is Nothing Then
+    '        MsgBox("Image (Foto) tidak ditemukan..", vbInformation, "chek Gambar")
+    '        Exit Sub
+    '    ElseIf NewFileName = "" Then
+    '        MsgBox("Pembaharuan tidak ditemukan..", vbInformation, "chek Gambar")
+    '        Exit Sub
 
     '    End If
+
+    '    com = New ClassIMG
+    '    csql = "update asetIMG90.dbo.GambarKIBA set Gambar = @photo where KIBA = @noid"
+    '    If com.SimpanPhoto("kiba", IMGPath & "\" & NewFileName, KIBkd, csql) > 0 Then
+    '        lbFoto.Enabled = True
+    '        MsgBox("Foto berhasil disimpan", vbInformation)
+
+    '        'update nmfile pada gambarkiba
+    '        csql = "update asetIMG90.dbo.gambarkiba set nmfile='" & NewFileName & "' where kiba='" & KIBdt & "'"
+    '        Me.tsLabel.Text = com.UpdatenmFile(csql)
+    '    Else
+    '        lbFoto.Enabled = False
+    '        MsgBox("Foto gagal disimpan", vbInformation)
+    '    End If
+    '    NewFileName = ""
+    '    com = Nothing
     'End Sub
 
 
-    'PANGGIL FOTO (Download)
-    'Private Sub lbft_Click(sender As Object, e As EventArgs) Handles lbFoto.Click, lbFotoSert.Click
+    ''PANGGIL FOTO (Download)
+    'Private Sub lbft_Click(sender As Object, e As EventArgs) Handles lbFoto.Click
     '    If sender.Equals(lbFoto) Then
-    '        Me.picBox.Image = Nothing
+    '        Me.pt.Image = Nothing
     '        Application.DoEvents()
 
-    '        If Me.picBox.Image Is Nothing Then
+    '        If Me.pt.Image Is Nothing Then
     '            csql1 = "select Gambar,nmFile from asetIMG90.dbo.gambarKIBA where KIBA = '" & KIBdt & "'"
     '            csql2 = "select KIBA,Gambar from asetIMG90.dbo.gambarKIBA where KIBA = @noid"
     '            'kirim untuk panggil foto
     '            com = New ClassIMG
-    '            com.PanggilFoto("kiba", KIBdt, Me.picBox, csql1, csql2)
-    '            com = Nothing
-    '            Me.tsLabel.Text = "Memperbarui gambar"
-    '        End If
-
-    '    ElseIf sender.Equals(lbFotoSert) Then
-    '        Me.picBoxSert.Image = Nothing
-    '        Application.DoEvents()
-
-    '        If Me.picBoxSert.Image Is Nothing Then
-    '            csql1 = "select Gambar,nmFile from asetIMG90.dbo.gambarKIBASert where KIBA = '" & KIBdt & "'"
-    '            csql2 = "select KIBA,Gambar from asetIMG90.dbo.gambarKIBASert where KIBA = @noid"
-    '            'kirim untuk panggil foto
-    '            com = New ClassIMG
-    '            com.PanggilFoto("kiba", KIBdt, Me.picBoxSert, csql1, csql2)
+    '            com.PanggilFoto("kiba", KIBdt, Me.pt, csql1, csql2)
     '            com = Nothing
     '            Me.tsLabel.Text = "Memperbarui gambar"
     '        End If
@@ -258,6 +186,49 @@ Public Class FrmMaster2
     '            com = Nothing
     '            Me.tsLabel.Text = "Memperbarui gambar BARAT"
     'End If
+
+    ''open file dialog
+
+    'Private Sub dtOpen(ByVal dtPkey As String, ByVal pcBOX As PictureBox, ByVal nmObjft As String)
+    '    Dim OpenFileDialog As New OpenFileDialog
+    '    'OpenFileDialog.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
+    '    OpenFileDialog.Filter = "JPEG Files (*.JPG)|*.JPG|BMP Files (*.BMP)|*.BMP|All Files (*.*)|*.*"
+    '    If (OpenFileDialog.ShowDialog(Me) = System.Windows.Forms.DialogResult.OK) Then
+    '        FileName = OpenFileDialog.FileName
+    '        Dim nf() As String = Split(FileName, "\")
+    '        nf = Split(nf(nf.GetUpperBound(0)), ".")
+    '        NewFileName = Replace(dtPkey, ".", "") & nmObjft & "." & nf(1) 'nf(nf.GetUpperBound(0))
+    '        FileDel(IMGPath & "\" & NewFileName) 'hapus file
+    '        ' TODO: Add code here to open the file.
+    '        FullPath = OpenFileDialog.FileName
+    '        nFile = System.IO.Path.GetFileName(FullPath)
+    '        nPath = System.IO.Path.GetDirectoryName(FullPath)
+    '        nroot = System.IO.Path.GetPathRoot(FullPath)
+
+    '        com = New ClassIMG
+    '        com.ResizeImages(nFile, NewFileName, pcBOX.Width * 4, pcBOX.Height * 4, nPath, crPro) 'lakukan rezise pada file asal
+    '        com = Nothing
+
+    '        pcBOX.Tag = IMGPath & "\" & NewFileName
+    '        pcBOX.ImageLocation = pcBOX.Tag '   'FullPath
+    '    End If
+    'End Sub
+    ''panggil nya
+    'dtOpen(KIBdt, picBox, "M")
+
+    Private Sub Browse_Click(sender As Object, e As EventArgs) Handles Browse.Click
+        Dim ofd As New OpenFileDialog
+        ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp"
+        ofd.Title = "Pilih Gambar"
+
+        If ofd.ShowDialog() = DialogResult.OK Then
+            Dim imgPath As String = ofd.FileName
+            Dim img As Image = Image.FromFile(imgPath)
+            pt.Image = img
+        End If
+
+        ofd.Dispose()
+    End Sub
 
     Private Sub FrmMaster2_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tb1.KeyPress, tb2.KeyPress, cb1.KeyPress, tb4.KeyPress, tb5.KeyPress, cb2.KeyPress, cb3.KeyPress
         If e.KeyChar = Chr(13) Then
@@ -318,24 +289,6 @@ Public Class FrmMaster2
         Catch ex As Exception
             MsgBox(Err.Description, vbInformation, "Cek err")
         End Try
-    End Sub
-
-    Private Sub pt_Click(sender As Object, e As EventArgs) Handles pt.Click
-
-    End Sub
-
-    Private Sub Browse_Click(sender As Object, e As EventArgs) Handles Browse.Click
-        Dim ofd As New OpenFileDialog
-        ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp"
-        ofd.Title = "Pilih Gambar"
-
-        If ofd.ShowDialog() = DialogResult.OK Then
-            Dim imgPath As String = ofd.FileName
-            Dim img As Image = Image.FromFile(imgPath)
-            pt.Image = img
-        End If
-
-        ofd.Dispose()
     End Sub
 
 End Class
