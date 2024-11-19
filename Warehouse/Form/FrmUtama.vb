@@ -6,6 +6,7 @@ Imports System.Net.NetworkInformation
 Imports System.Net.Dns
 Imports System.Globalization
 Imports System.Net
+Imports System.IO
 
 
 Public Class FrmUtama
@@ -55,6 +56,15 @@ Public Class FrmUtama
         'tsTGL.Text = jam.AmbilTanggalServer.Date.ToShortDateString
 
         'jam = Nothing
+        Try
+            DOKPath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+            IMGPath = DOKPath
+            DOKPath = Path.Combine(DOKPath, "PTM-CEMPAKA")
+            My.Application.ChangeCulture("id-ID") 'english united kingdoom
+            CreateFolder(DOKPath)
+        Catch ex As Exception
+            MsgBox(Err.Description, vbInformation, "Cek ID")
+        End Try
 
         Dim dt As String = ""
         Dim dtStyle As String = "ddd, dd MMM yyyy"

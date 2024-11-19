@@ -44,6 +44,9 @@ Partial Class FrmMaster2
         Me.Browse = New System.Windows.Forms.Button()
         Me.tb3 = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.lbFoto = New System.Windows.Forms.Label()
+        Me.btSim = New System.Windows.Forms.Button()
+        Me.lbNot = New System.Windows.Forms.Label()
         CType(Me.pt, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -131,7 +134,7 @@ Partial Class FrmMaster2
         'tb1
         '
         Me.tb1.Location = New System.Drawing.Point(168, 44)
-        Me.tb1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tb1.Margin = New System.Windows.Forms.Padding(4)
         Me.tb1.Name = "tb1"
         Me.tb1.Size = New System.Drawing.Size(241, 22)
         Me.tb1.TabIndex = 8
@@ -139,7 +142,7 @@ Partial Class FrmMaster2
         'tb2
         '
         Me.tb2.Location = New System.Drawing.Point(168, 75)
-        Me.tb2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tb2.Margin = New System.Windows.Forms.Padding(4)
         Me.tb2.Name = "tb2"
         Me.tb2.Size = New System.Drawing.Size(241, 22)
         Me.tb2.TabIndex = 9
@@ -147,7 +150,7 @@ Partial Class FrmMaster2
         'tb4
         '
         Me.tb4.Location = New System.Drawing.Point(168, 183)
-        Me.tb4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tb4.Margin = New System.Windows.Forms.Padding(4)
         Me.tb4.Name = "tb4"
         Me.tb4.Size = New System.Drawing.Size(241, 22)
         Me.tb4.TabIndex = 10
@@ -155,7 +158,7 @@ Partial Class FrmMaster2
         'tb5
         '
         Me.tb5.Location = New System.Drawing.Point(168, 218)
-        Me.tb5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tb5.Margin = New System.Windows.Forms.Padding(4)
         Me.tb5.Name = "tb5"
         Me.tb5.Size = New System.Drawing.Size(241, 22)
         Me.tb5.TabIndex = 11
@@ -164,7 +167,7 @@ Partial Class FrmMaster2
         '
         Me.cb1.FormattingEnabled = True
         Me.cb1.Location = New System.Drawing.Point(168, 150)
-        Me.cb1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cb1.Margin = New System.Windows.Forms.Padding(4)
         Me.cb1.Name = "cb1"
         Me.cb1.Size = New System.Drawing.Size(241, 24)
         Me.cb1.TabIndex = 12
@@ -173,7 +176,7 @@ Partial Class FrmMaster2
         '
         Me.cb2.FormattingEnabled = True
         Me.cb2.Location = New System.Drawing.Point(168, 249)
-        Me.cb2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cb2.Margin = New System.Windows.Forms.Padding(4)
         Me.cb2.Name = "cb2"
         Me.cb2.Size = New System.Drawing.Size(104, 24)
         Me.cb2.TabIndex = 13
@@ -182,7 +185,7 @@ Partial Class FrmMaster2
         '
         Me.cb3.FormattingEnabled = True
         Me.cb3.Location = New System.Drawing.Point(168, 279)
-        Me.cb3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cb3.Margin = New System.Windows.Forms.Padding(4)
         Me.cb3.Name = "cb3"
         Me.cb3.Size = New System.Drawing.Size(104, 24)
         Me.cb3.TabIndex = 14
@@ -191,7 +194,7 @@ Partial Class FrmMaster2
         '
         Me.lv.HideSelection = False
         Me.lv.Location = New System.Drawing.Point(16, 319)
-        Me.lv.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lv.Margin = New System.Windows.Forms.Padding(4)
         Me.lv.Name = "lv"
         Me.lv.Size = New System.Drawing.Size(659, 192)
         Me.lv.TabIndex = 15
@@ -210,7 +213,7 @@ Partial Class FrmMaster2
         'pb
         '
         Me.pb.Location = New System.Drawing.Point(596, 518)
-        Me.pb.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pb.Margin = New System.Windows.Forms.Padding(4)
         Me.pb.Name = "pb"
         Me.pb.Size = New System.Drawing.Size(80, 16)
         Me.pb.TabIndex = 17
@@ -218,10 +221,10 @@ Partial Class FrmMaster2
         'pt
         '
         Me.pt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pt.Location = New System.Drawing.Point(469, 31)
+        Me.pt.Location = New System.Drawing.Point(469, 44)
         Me.pt.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.pt.Name = "pt"
-        Me.pt.Size = New System.Drawing.Size(206, 237)
+        Me.pt.Size = New System.Drawing.Size(206, 224)
         Me.pt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pt.TabIndex = 18
         Me.pt.TabStop = False
@@ -229,7 +232,7 @@ Partial Class FrmMaster2
         'Browse
         '
         Me.Browse.Location = New System.Drawing.Point(527, 277)
-        Me.Browse.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Browse.Margin = New System.Windows.Forms.Padding(4)
         Me.Browse.Name = "Browse"
         Me.Browse.Size = New System.Drawing.Size(100, 28)
         Me.Browse.TabIndex = 19
@@ -239,7 +242,7 @@ Partial Class FrmMaster2
         'tb3
         '
         Me.tb3.Location = New System.Drawing.Point(168, 107)
-        Me.tb3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tb3.Margin = New System.Windows.Forms.Padding(4)
         Me.tb3.Name = "tb3"
         Me.tb3.Size = New System.Drawing.Size(241, 22)
         Me.tb3.TabIndex = 21
@@ -254,11 +257,42 @@ Partial Class FrmMaster2
         Me.Label9.TabIndex = 20
         Me.Label9.Text = "Id Gudang"
         '
+        'lbFoto
+        '
+        Me.lbFoto.AutoSize = True
+        Me.lbFoto.Location = New System.Drawing.Point(547, 19)
+        Me.lbFoto.Name = "lbFoto"
+        Me.lbFoto.Size = New System.Drawing.Size(59, 17)
+        Me.lbFoto.TabIndex = 22
+        Me.lbFoto.Text = "Label10"
+        '
+        'btSim
+        '
+        Me.btSim.Location = New System.Drawing.Point(293, 512)
+        Me.btSim.Margin = New System.Windows.Forms.Padding(4)
+        Me.btSim.Name = "btSim"
+        Me.btSim.Size = New System.Drawing.Size(100, 28)
+        Me.btSim.TabIndex = 23
+        Me.btSim.Text = "Simpan"
+        Me.btSim.UseVisualStyleBackColor = True
+        '
+        'lbNot
+        '
+        Me.lbNot.AutoSize = True
+        Me.lbNot.Location = New System.Drawing.Point(350, 286)
+        Me.lbNot.Name = "lbNot"
+        Me.lbNot.Size = New System.Drawing.Size(59, 17)
+        Me.lbNot.TabIndex = 24
+        Me.lbNot.Text = "Label10"
+        '
         'FrmMaster2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(717, 545)
+        Me.Controls.Add(Me.lbNot)
+        Me.Controls.Add(Me.btSim)
+        Me.Controls.Add(Me.lbFoto)
         Me.Controls.Add(Me.tb3)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Browse)
@@ -281,7 +315,7 @@ Partial Class FrmMaster2
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FrmMaster2"
         Me.Text = "7"
         CType(Me.pt, System.ComponentModel.ISupportInitialize).EndInit()
@@ -312,4 +346,7 @@ Partial Class FrmMaster2
     Friend WithEvents Browse As Button
     Friend WithEvents tb3 As TextBox
     Friend WithEvents Label9 As Label
+    Friend WithEvents lbFoto As Label
+    Friend WithEvents btSim As Button
+    Friend WithEvents lbNot As Label
 End Class

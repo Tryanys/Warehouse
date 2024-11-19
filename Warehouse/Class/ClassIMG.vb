@@ -180,7 +180,7 @@ sls:
         Try
             Cursor.Current = Cursors.WaitCursor
             Select Case MeTag
-                Case "kiba", "kibb", "kibc", "kibd", "kibe", "kibf", "kibbx", "kibcx", "kibdx", "kibex", "kibl"
+                Case "kiba", "kibb", "kibc", "kibd", "kibe", "kibf", "kibbx", "kibcx", "kibdx", "kibex", "kibl", "krw"
                     fotoComm.Parameters.Add("@noid", SqlDbType.VarChar, 65).Value = Pkey
                     fotoComm.Parameters.Add("@photo", SqlDbType.Image, photo.Length).Value = photo
                 Case "kibcl", "kibcrg"
@@ -250,7 +250,7 @@ sls:
         Dim fotocon As SqlConnection = New SqlConnection(con)
         Dim fotoComm As SqlCommand = New SqlCommand(csql2, fotocon)
         Select Case meTag
-            Case "kiba", "kibb", "kibc", "kibd", "kibe", "kibf", "kibbx", "kibcx", "kibdx", "kibex", "kibl", "df"
+            Case "kiba", "kibb", "kibc", "kibd", "kibe", "kibf", "kibbx", "kibcx", "kibdx", "kibex", "kibl", "df", "krw"
                 fotoComm.Parameters.Add("@noid", SqlDbType.VarChar, 65).Value = Pkey
             Case "kibcl", "kibcrg"
                 fotoComm.Parameters.Add("@noid", SqlDbType.VarChar, 75).Value = Pkey
