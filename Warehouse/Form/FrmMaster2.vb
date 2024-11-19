@@ -94,7 +94,7 @@ Public Class FrmMaster2
         datatable = Nothing
     End Sub
     Private Sub tb1_TextChanged(sender As Object, e As EventArgs) Handles tb1.TextChanged
-        Dim img() As Byte
+        'Dim img() As Byte
         Try
 
             tb2.Text = ""
@@ -105,7 +105,7 @@ Public Class FrmMaster2
             cb3.Text = ""
             pt.Image = Nothing
             If dttemp.ndKey = "krw" Then
-                csql = "Select a.NamaKaryawan, b.Keterangan, a.Alamat, a.NoTelp, a.TAG, a.Akses, a.foto  from TokoMaster..Karyawan a inner join TokoMaster..WILKEC b ON a.KecID = b.kecID where IdKaryawan ='" & tb1.Text & "'"
+                csql = "Select a.NamaKaryawan, b.Keterangan, a.Alamat, a.NoTelp, a.TAG, a.Akses  from TokoMaster..Karyawan a inner join TokoMaster..WILKEC b ON a.KecID = b.kecID where IdKaryawan ='" & tb1.Text & "'"
             End If
             If tb1.Text = "" Then Exit Sub
             For Each dt As DataRow In cpro.ExecQuery(csql).Rows
@@ -115,21 +115,22 @@ Public Class FrmMaster2
                 tb5.Text = dt(3)
                 cb2.Text = dt(4)
                 cb3.Text = dt(5)
-                img = dt(6)
-                Dim ms As New MemoryStream(img)
-                pt.Image = Image.FromStream(ms)
+                'img = dt(6)
+                'Dim ms As New MemoryStream(img)
+                'pt.Image = Image.FromStream(ms)
                 'Tampilkan foto ke dalam picturebox
-                'Me.picBoxB.Image = Nothing
-                'Application.DoEvents()
+                Application.DoEvents()
 
-                'If Me.pt.Image Is Nothing Then
-                '    csql1 = "select GambarB,nmFileB from asetIMG90.dbo.gambarKIBABatas where KIBA = '" & KIBdt & "'"
-                '    csql2 = "select KIBA,GambarB from asetIMG90.dbo.gambarKIBABatas where KIBA = @noid"
-                '    'kirim untuk panggil foto
-                '    com = New ClassIMG
-                '    com.PanggilFoto("kiba", KIBdt, Me.picBoxB, csql1, csql2)
-                '    com = Nothing
-                '    Me.tsLabel.Text = "Memperbarui gambar BARAT"
+                If Me.pt.Image Is Nothing Then
+                    csql1 = "select Gambar,nmFile from TokoIMG.dbo.gambarKaryawan where id = '" & tb1.Text & "'"
+                    csql2 = "select id,Gambar from TokoIMG.dbo.gambarKaryawan where id = @noid"
+                    'kirim untuk panggil foto
+                    com = New ClassIMG
+                    com.PanggilFoto("krw", tb1.Text, Me.pt, csql1, csql2)
+                    com = Nothing
+                    'Me.lbNot.Text = "Memperbarui gambar BARAT"
+                End If
+
             Next
         Catch ex As Exception
             MsgBox(Err.Description, vbInformation, "Cek err")
@@ -178,9 +179,9 @@ Public Class FrmMaster2
                 csql2 = "select id,Gambar from TokoIMG.dbo.gambarKaryawan where id = @noid"
                 'kirim untuk panggil foto
                 com = New ClassIMG
-                com.PanggilFoto("kiba", tb2.Text, Me.pt, csql1, csql2)
+                com.PanggilFoto("krw", tb1.Text, Me.pt, csql1, csql2)
                 com = Nothing
-                Me.lbNot.Text = "Memperbarui gambar"
+                'Me.lbNot.Text = "Memperbarui gambar"
             End If
 
         End If

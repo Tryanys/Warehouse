@@ -5,11 +5,27 @@ Module ModMain
     Public csql As String, csql1 As String, csql2 As String, itm() As String
     Public crPro As Integer = 80, IMGPath As String, DOKPath As String, sqllogin As Integer = 30, sqlDatafill As Integer = 30
     Public pHostNM As String = "", pIPLoc As String = "", pMac As String = "", jmlkolom As Integer = 0, LvKolom As String = String.Empty
-    Public NamIP As String, DBName As String
-    Public CUser As String, CPass As String
+    Public CUser As String = "admin", CPass As String = "admin"
+    Public NamIP As String, DBName As String = "TokoIMG"
     Public nPath As String, nroot As String, nFile As String
 
     Public nKey As String, nPKey As String, nSKey As String, nTkey As String
+
+    Public Sub AmbilIP()
+        Dim FILE_NAME As String = Application.StartupPath & "\IamWarehouse.txt"
+        Dim nm() As String, nIP() As String
+        If System.IO.File.Exists(FILE_NAME) = True Then
+            Dim objReader As New System.IO.StreamReader(FILE_NAME)
+            nm = Split(objReader.ReadToEnd, ",")
+            'split ke posisi 0123
+            nIP = Split(nm(0), ".") '103.9.227.210
+            NamIP = nIP(1) & "." & nIP(2) & "." & nIP(0) & "." & nIP(3) : DBName = nm(1)
+            'NamIP = nm(0)
+            objReader.Close()
+        Else
+            MsgBox("File Does Not Exist")
+        End If
+    End Sub
 
     Public Sub CreateFolder(ByVal path As String)
         If (Not System.IO.Directory.Exists(path)) Then

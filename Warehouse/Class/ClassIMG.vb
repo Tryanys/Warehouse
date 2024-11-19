@@ -172,7 +172,8 @@ sls:
         Dim photo() As Byte = reader.ReadBytes(stream.Length)
         Dim con As String = String.Empty, Rval As Integer
         Dim itm() As String = Split(Pkey, "!")
-        con = "Data Source=" & NamIP & ";Initial Catalog=" & DBName & ";User ID=" & CUser & ";Password=" & CPass & "" ';Integrated Security=yes"
+        'con = "Data Source=" & NamIP & ";Initial Catalog=" & DBName & ";User ID=" & CUser & ";Password=" & CPass & "" ';Integrated Security=yes"
+        con = "Data Source= (localdb)\mssqllocaldb; Integrated Security = true"
 
         Cursor.Current = Cursors.AppStarting
         Dim fotocon As SqlConnection = New SqlConnection(con)
@@ -229,7 +230,8 @@ sls:
         Dim bufferSize As Integer = 1000
         Dim outByte(bufferSize - 1) As Byte
         Dim startIndex As Long = 0
-        Dim con As String = "Data Source=" & NamIP & ";Initial Catalog=" & DBName & ";User ID=" & CUser & ";Password=" & CPass & "" ';Integrated Security=yes"
+        'Dim con As String = "Data Source=" & NamIP & ";Initial Catalog=" & DBName & ";User ID=" & CUser & ";Password=" & CPass & "" ';Integrated Security=yes"
+        Dim con As String = "Data Source= (localdb)\mssqllocaldb; Integrated Security = true"
         Dim nmFile As String = ""
         Dim Rval As Integer, foto As String = String.Empty, FileName As String = String.Empty
         Cursor.Current = Cursors.AppStarting
